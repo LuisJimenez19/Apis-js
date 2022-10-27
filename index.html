@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apis</title>
+    <!-- CUSTOM CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- iCONS -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+
+<body>
+    <header class="header">
+
+
+        <div class="logo">
+            <p>Luis Angel</p>
+        </div>
+        <div class="container">
+            <h1>Apis de js</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus provident neque corporis sint,
+                reiciendis,
+                eum odio magni pariatur voluptate perferendis accusantium tempore voluptatem explicabo dolorum
+                consequatur
+                qui deserunt veritatis aperiam?</p>
+        </div>
+
+    </header>
+
+    <div class="wave-header"></div>
+
+    <div class="container-principal">
+
+        <aside class="aside-bg d-none">
+            <nav class="nav">
+                <ul class="nav-bar">
+                    <li class="nav__item link--active"><a href="#date" class="nav-link nav-link1 active">Objeto Date</a>
+                    </li>
+                    <li class="nav__item"><a href="#LocalStorage" class="nav-link nav-link2">Local Storage</a></li>
+                    <li class="nav__item"><a href="#seccion2" class="nav-link nav-link3">Lorem, ipsum dolor.</a></li>
+                    <li class="nav__item"><a href="#seccion3" class="nav-link nav-link4">Lorem, ipsum dolor.</a></li>
+                    <li class="nav__item"><a href="#seccion4" class="nav-link nav-link5">Lorem, ipsum dolor.</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <div class="hamburger hamburger--arrowturn">
+            <div class="hamburger-box">
+                <div class="hamburger-inner"></div>
+            </div>
+        </div>
+
+        <main class="main-container">
+
+            <section id="date" class="section section-date">
+                <div class="reloj-container">
+                    <div id="reloj">00:00</div>
+                    <div class="reloj-controls">
+                        <a id="play-reloj" class="reloj__controll">Iniciar reloj</a>
+                        <a id="stop-reloj" class="reloj__controll">Detener reloj</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="LocalStorage" class="section">
+                <div class="todo-list">
+                    <div class="head">
+                        <h2 class="head__title">To Do List</h2>
+                        <p class="head__subtitle">Local Storage</p>
+                        <form class="add-task">
+                            <input id="input-task" class="input-task" type="text" placeholder="Añade tu tarea"><span
+                                class="inputFocus"></span>
+                            <span id="btn-add-task" class="material-symbols-outlined icon">add
+                            </span>
+                        </form>
+                    </div>
+
+                    <article class="container-task">
+
+                        <div class="task-to-complete container-50">
+                            <h5>Tareas a Realizar</h5>
+                            <div class="tasks-to-do">
+
+                                <!-- <div class="task-to-do">
+                                    <p>
+                                        <span class="index-task">1</span>
+                                        Realizar un To Do List con LocalStorage
+                                    </p>
+
+                                    <span class="material-symbols-outlined icon icon-done">done</span>
+                                </div> -->
+
+                            </div>
+
+
+                            <div class="btn-container disabled"><a class="btn btn-remove-all">Eliminar Todo <span
+                                        class="material-symbols-outlined">close</span></a></div>
+                        </div>
+
+
+
+                        <div class="task-completed-container container-50">
+                            <h5>Tareas Completas</h5>
+                            <div class="tasks-completed">
+
+                                <!-- <div class="task-to-do">
+                                    <p>
+                                        <span class="index-task">1</span>
+                                        Realizar un To Do List con LocalStorage
+                                    </p>
+                                    <span class="material-symbols-outlined icon icon-close">close</span>
+                                </div>
+                                 -->
+                            </div>
+
+
+                            <div class="btn-container disabled"><a class="btn btn-clear-all">Limpiar Todo <span
+                                        class="material-symbols-outlined">delete</span></a></div>
+                        </div>
+
+
+                    </article>
+
+
+
+
+                </div>
+
+
+            </section>
+
+
+
+
+            <section id="seccion2" class="section">Seccion 2 </section>
+            <section id="seccion3" class="section">Seccion 3</section>
+        </main>
+    </div>
+
+
+    <script type="module" src="./js/main.js"></script>
+</body>
+
+</html
