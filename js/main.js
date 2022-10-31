@@ -1,3 +1,4 @@
+import dragDrop from "./drag&drop.js";
 import digitalClock from "./date.js";
 import ToDoList from "./ToDoList.js";
 
@@ -51,8 +52,9 @@ navLinks.forEach((link) => {
     });
     const hash = link.firstElementChild.getAttribute("href");
     const target = document.querySelector(hash)
+
     if (target) {
-        observer.observe(target)
+        observer.observe(target) /* Llamo al observador y le paso lo links para que observer */
     }
 });
 
@@ -65,7 +67,6 @@ aside.addEventListener('click', (e) => {
     }
 })
 /* Holla */
-
 
 /* <----------------------------------------------> */
 /* >------reloj-------< */
@@ -80,5 +81,8 @@ digitalClock(reloj, playBtn, stopBtn);
 /* ToDoList */
 ToDoList()
 
+
+/* drag and drop */
+dragDrop()
 
 

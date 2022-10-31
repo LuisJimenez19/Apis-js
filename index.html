@@ -9,8 +9,8 @@
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="./css/styles.css">
     <!-- iCONS -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
 </head>
 
 <body>
@@ -41,7 +41,7 @@
                     <li class="nav__item link--active"><a href="#date" class="nav-link nav-link1 active">Objeto Date</a>
                     </li>
                     <li class="nav__item"><a href="#LocalStorage" class="nav-link nav-link2">Local Storage</a></li>
-                    <li class="nav__item"><a href="#seccion2" class="nav-link nav-link3">Lorem, ipsum dolor.</a></li>
+                    <li class="nav__item"><a href="#dragDrop" class="nav-link nav-link3">Darg and Drop</a></li>
                     <li class="nav__item"><a href="#seccion3" class="nav-link nav-link4">Lorem, ipsum dolor.</a></li>
                     <li class="nav__item"><a href="#seccion4" class="nav-link nav-link5">Lorem, ipsum dolor.</a></li>
                 </ul>
@@ -102,48 +102,57 @@
                                         class="material-symbols-outlined">close</span></a></div>
                         </div>
 
-
-
                         <div class="task-completed-container container-50">
                             <h5>Tareas Completas</h5>
-                            <div class="tasks-completed">
-
-                                <!-- <div class="task-to-do">
-                                    <p>
-                                        <span class="index-task">1</span>
-                                        Realizar un To Do List con LocalStorage
-                                    </p>
-                                    <span class="material-symbols-outlined icon icon-close">close</span>
-                                </div>
-                                 -->
-                            </div>
-
+                            <div class="tasks-completed"></div>
 
                             <div class="btn-container disabled"><a class="btn btn-clear-all">Limpiar Todo <span
                                         class="material-symbols-outlined">delete</span></a></div>
                         </div>
 
-
                     </article>
-
-
-
-
                 </div>
 
 
             </section>
 
 
+            <section id="dragDrop" class="section">
 
+            <div class="dragDrop-section">
+                <div class="head">
+                    <h2 class="head__title">Drag and Drop</h2>
+                    <p class="head__subtitle">Texturizador</p>
+                </div>
 
-            <section id="seccion2" class="section">Seccion 2 </section>
+                <div class="texturas">
+                    <!-- <h2 class="texturas__title">texturas</h2> -->
+                    <div class="textura1 textura"></div>
+                    <div class="textura2 textura"></div>
+                    <div class="textura3 textura"></div>
+                    <div class="textura4 textura"></div>
+                    <div class="textura5 textura"></div>
+                </div>
+                
+                <div class="drop-zone"></div>
+                <a class="btn-refresh">Refrescar</a>
+                <div class="modal-error">
+                    <div class="error">
+                        <p>Revisa tu conexión a internet</p>
+                    </div>
+                </div>
+            </div>    
+            
+            
+            </section>
             <section id="seccion3" class="section">Seccion 3</section>
         </main>
     </div>
-
-
+    <!-- FONT AWESOME -->
+    <script src="./js/fontawesome.js" ></script>
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
 
-</html
+</html>

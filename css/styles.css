@@ -80,7 +80,7 @@ body {
     width: 100%;
     /* border: 1px solid black; */
     height: 300px;
-    background: url(./wave.svg);
+    background: url('../src/wave.svg');
     background-size: cover;
     z-index: 500;
     position: relative;
@@ -109,7 +109,7 @@ body {
     position: fixed;
     transition: all 0.3s ease-in-out;
 
-    z-index: 100;
+    z-index: 700; /* se posiciona delante de la wave pero antes del icon hamburguesa */
 }
 
 .nav--active {
@@ -387,7 +387,7 @@ body {
     color: #fff;
 }
 
-.todo-list .head {
+.head {
     width: 100%;
     text-align: center;
     margin: 2rem 0;
@@ -617,4 +617,120 @@ body {
     100% {
         transform: translateX(-20px);
     }
+}
+
+/* <------------------------------------------------TEXTURIZADOR---------------------> */
+#dragDrop{
+    display: block;
+}
+.texturas{
+    margin-top: -10px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.texturas__title{
+    width: 100%;
+    text-align: center;
+    font-size: 1.1em;
+    color: #2f346c;
+
+    text-transform: uppercase;
+}
+
+.textura{
+    height: 80px;
+    background-color: #000;
+    border-radius: 5px;
+    min-width: 80px;
+    max-width: 200px;
+    flex-grow: 1;
+    background-image: url('../src/rings.svg');
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 600;
+
+    transition: all .2s;
+}
+.textura:hover{
+    cursor: pointer;
+    filter: brightness(1.3);
+}
+.textura:active{
+    opacity: .6;
+}
+
+@media (min-width:991px) {
+    .textura{
+        height: 200px;
+    }
+}
+.btn-refresh{
+    display: block;
+    text-align: center;
+    max-width: 300px;
+
+    margin:10px auto;
+    padding: 10px 20px;
+
+    background-color: #10194f;
+    border-radius: 20px;
+    color: #fff;
+
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+    transition: all .3s;
+}
+.btn-refresh.show{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.btn-refresh.show:hover{
+    filter: brightness(1.3);
+    transform: scale(1.02);
+}
+
+.drop-zone{
+    width: 100%;
+    outline: 5px dashed #eee;
+    background: radial-gradient(rgba(0, 0, 0, 0.247),rgba(0, 0, 0, 0.37));
+    margin-top: 30px;
+    height: 50vh;
+
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.modal-error{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    place-content: center;
+
+    background-color: rgba(0, 0, 0, 0.478);
+    z-index: 2000;
+    pointer-events: none;
+    opacity: 0;
+}
+
+.error{
+    padding: 30px 8px;
+    background-color: #f2f2f2;
+}
+
+.modal-error.show{
+    opacity: 1;
 }

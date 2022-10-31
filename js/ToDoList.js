@@ -1,5 +1,21 @@
-/*  */
-export default function ToDoList() {
+/* Uso el localStorage para opoder almacenar las tareas */
+/* Crea o modifica el localStorage */
+// localStorage.setItem('clave' , 'valor, arr de objetos, objeto') /* Se tiene que pasar si o si un string, entonces se puede usar JSON.stringify('obj') */
+
+/* Trae el valor de la clave que le pasamos */
+// localStorage.getItem('clave'); /* también tendriamos que parsearlo ya que devolveria un string */
+
+/* Elimina el par que estamos seleccionando */
+// localStorage.removeItem('clave a borrar') 
+
+/* Elimina todo del localStorage */
+// localStorage.clear();
+
+
+// sessionStorage es la misma vaina solo que su persistencia solo tiene el alcance de la sesión osea si se cierra la pestaña se borran los datos.
+
+export default function ToDoList() { /* Lo mejor seria pasarle por parametros todo los elementos que vamos a usar, asi seria una función mas reutilizable */
+    'use strcit'
     const inputTask = document.querySelector('#input-task');
     const btnAddTask = document.querySelector('#btn-add-task');
 
@@ -183,7 +199,7 @@ export default function ToDoList() {
 
         let modeIcon = container == taskContainer ? 'done' : 'close'
 
-        if (n == 1) {
+        if (n == 1) { /* Quiere decir que solo va añadir una tarea */
             const taskHtml = document.createElement('div')
             taskHtml.className = 'task-to-do'
             taskHtml.innerHTML =
