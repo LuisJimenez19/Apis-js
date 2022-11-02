@@ -43,6 +43,8 @@ body {
     font-family: "Montserrat";
     position: relative;
     background-color: #253595;
+    overflow-x: hidden;
+
 }
 
 /* HEADER */
@@ -622,6 +624,7 @@ body {
 /* <------------------------------------------------TEXTURIZADOR---------------------> */
 #dragDrop{
     display: block;
+    
 }
 .texturas{
     margin-top: -10px;
@@ -631,6 +634,7 @@ body {
     gap: 20px;
     justify-content: center;
     align-items: center;
+
 }
 .texturas__title{
     width: 100%;
@@ -650,6 +654,8 @@ body {
     flex-grow: 1;
     background-image: url('../src/rings.svg');
 
+    position: static;
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -658,6 +664,13 @@ body {
 
     transition: all .2s;
 }
+
+.textura.textura--touch{
+    position: absolute;
+    z-index: 10000;
+}
+
+
 .textura:hover{
     cursor: pointer;
     filter: brightness(1.3);
@@ -728,6 +741,7 @@ body {
 
 .error{
     padding: 30px 8px;
+    min-height: 80px;
     background-color: #f2f2f2;
 }
 

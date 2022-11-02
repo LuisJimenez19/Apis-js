@@ -47,7 +47,6 @@ export default function dragDrop() {
 
     // Funcion que se envarga de primero añadir un fondo a cada textura
     function handlerBg() {
-        console.log(navigator.onLine)
         // si tiene internet que haga las peticiones
         if (navigator.onLine) {
             auxintentos = 10;
@@ -62,9 +61,9 @@ export default function dragDrop() {
                 })
 
             })
-            // de lo contrario añade un colo de fondo aleatorio
+            // de lo contrario añade un color de fondo aleatorio
         } else {
-            showError()
+            // showError()
             texturas.forEach((textura) => {
 
                 let bgColor = Math.round(Math.random() * 999999)
@@ -107,11 +106,20 @@ export default function dragDrop() {
     })
 
     /* Por si ocurre un error se muestra este modal que se quita a los 2 segundos */
+    let auxErr = 0
     function showError(err) {
-        modalError.classList.add('show')
-        setTimeout(() => { modalError.classList.remove('show') }, 2000)
+        if (auxErr < 1) {
+            auxErr++
+            modalError.classList.add('show')
+            console.log(err.response.status)
+            modalError.firstElementChild.firstElementChild.innerHTML += `<p>error ${err.response.status}</p>`
+            setTimeout(() => { modalError.classList.remove('show') }, 2000)         
+            
+        }
+
+        
     }
-    
+
 
     /* Que solo llame a la función cuando el ususario este en la sección */
     const observer = new IntersectionObserver((entries) => {
@@ -123,5 +131,51 @@ export default function dragDrop() {
         })
     })
     observer.observe(zoneDrop)
+
+
+    /* <--------------------mobil---------------------< */
+    document.addEventListener('click', (event) => {
+        if (event.target.matches('.textura') && window.innerWidth < 768) {
+
+            if (navigator.onLine) {
+                let url = event.target.style.backgroundImage;
+                console.log(event.target.style.backgroundImage)
+                zoneDrop.style.backgroundImage = url
+            } else {
+                let bgColor = event.target.style.backgroundColor;
+                zoneDrop.style.backgroundColor = bgColor
+            }
+        }
+    })
+
+
+    texturas.forEach(textura => {
+        textura.addEventListener('touchmove', (e) => {
+            /* Posición del touch */
+            textura.classList.add('textura--touch')
+            let touchLocation = e.targetTouches[0]
+            console.log(Math.round(touchLocation.pageX))
+            console.log(Math.round(touchLocation.pageY))
+            /* Repocisionar el elemento */
+            textura.style.left = `${Math.round(touchLocation.pageX)}px`
+            textura.style.top = `${Math.round(touchLocation.pageY)}px`
+        })
+
+        
+        textura.addEventListener('touchend', (e) => {
+            textura.classList.remove('textura--touch')
+            if (navigator.onLine) {
+                let url = event.target.style.backgroundImage;
+                console.log(event.target.style.backgroundImage)
+                zoneDrop.style.backgroundImage = url
+            } else {
+                let bgColor = event.target.style.backgroundColor;
+                zoneDrop.style.backgroundColor = bgColor
+            }
+
+
+
+        })
+    })
 
 }
