@@ -799,7 +799,8 @@ body {
    color: #fff;
 }
 
-.btn-get-coords {
+.btn-get-coords,
+.btn-stop-coords {
     display: inline-block;
     padding: 10px 20px;
     margin: 10px auto;
@@ -814,7 +815,12 @@ body {
 
 }
 
-.btn-get-coords:hover {
+.btn-get-coords{
+    bottom: 50px;
+}
+
+.btn-get-coords:hover,
+.btn-stop-coords:hover {
     opacity: .5;
     color: #fff;
 }

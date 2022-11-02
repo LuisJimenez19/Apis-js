@@ -27,11 +27,12 @@ function geo() {
 
     const latitudElement = document.querySelector('#latitud')
     const longitudElement = document.querySelector('#longitud')
-    const altituddElement = document.querySelector('#altitud')
+    const altitudElement = document.querySelector('#altitud')
 
     const btnGetCoords = document.querySelector('.btn-get-coords');
+    const btnStop = document.querySelector('.btn-stop-coords')
 
-
+    let watchID;
     /* instanciamos */
     const geolocation = navigator.geolocation
     console.log(geolocation)
@@ -39,7 +40,7 @@ function geo() {
     /* Opciones */
     const options = {
         maximumAge: 0, /* Cuanto tiempo se guarda en cache, cada cuanto solicitar la info */
-        timeout: 1000, /* tiempo */
+        timeout: 500, /* tiempo */
         enableHightAccuracy: true /* alta precision */
     }
 
@@ -52,7 +53,6 @@ function geo() {
 
     /* Sale todo bien */
     function resPosition(position) {
-        console.log(position)
         let lat = position.coords.latitude
         let long = position.coords.longitude
         let alt = position.coords.altitude
@@ -63,19 +63,25 @@ function geo() {
 
         /* Por si es un dispositivo que pueda medir la altitud entonces lo va a mostrar */
         if (alt == null) {
-            altituddElement.parentElement.classList.add('coord--hide')
+            altitudElement.parentElement.classList.add('coord--hide')
         } else {
-            altituddElement.parentElement.classList.remove('coord--hide')
+            altitudElement.parentElement.classList.remove('coord--hide')
         }
 
-        altituddElement.textContent = alt
+        altitudElement.textContent = alt
 
     }
 
-    // geolocation.watchPosition(resPosition) /* Se ejecuta cada cierto tiempo pongamosle un segundo masomenos que me da respuesta */
     btnGetCoords.addEventListener('click', () => {
-        geolocation.getCurrentPosition(resPosition)
-        
+        watchID = geolocation.watchPosition(resPosition,errPosition,options) /* Se ejecuta cada cierto tiempo */
+        // geolocation.getCurrentPosition(resPosition)
+    })
+
+    btnStop.addEventListener('click', () => {
+        geolocation.clearWatch(watchID)
+        latitudElement.textContent = ''
+        longitudElement.textContent = ''
+        altitudElement.textContent = ''
     })
 }
 

@@ -39,8 +39,8 @@
         <aside class="aside-bg d-none">
             <nav class="nav">
                 <ul class="nav-bar">
-                    <li class="nav__item link--active"><a href="#header" class="nav-link nav-link">Inicio</a></li>
-                    <li class="nav__item link--active"><a href="#date" class="nav-link nav-link1">Objeto Date</a></li>
+                    <li class="nav__item"><a href="#header" class="nav-link nav-link">Inicio</a></li>
+                    <li class="nav__item "><a href="#date" class="nav-link nav-link1">Objeto Date</a></li>
                     <li class="nav__item"><a href="#LocalStorage" class="nav-link nav-link2">Local Storage</a></li>
                     <li class="nav__item"><a href="#dragDrop" class="nav-link nav-link3">Darg and Drop</a></li>
                     <li class="nav__item"><a href="#geolocation" class="nav-link nav-link4">Geolocalización</a></li>
@@ -165,6 +165,7 @@
                         <p class="coord">Longitud: <span id="longitud"></span></p>
                         <p class="coord coord--hide">Altitud: <span id="altitud"></span></p>
                         <a class="btn-get-coords">Obtener coordenadas</a>
+                        <a class="btn-stop-coords">detener</a>
                     </div>
                 </div>
             </section>
@@ -173,7 +174,11 @@
             <section id="history" class="section">
                 <div class="history-section">
                     <h1 class="title">History</h1>
-
+                        <ul>
+                            <li class="item-history"></li>
+                            <li class="item-history"></li>
+                            <li class="item-history"></li>
+                        </ul>
                 
                 </div>
             </section>

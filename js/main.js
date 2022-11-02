@@ -2,6 +2,7 @@ import dragDrop from "./drag&drop.js";
 import digitalClock from "./date.js";
 import ToDoList from "./ToDoList.js";
 import geo from "./geolocation.js";
+import historial from "./history.js";
 
 
 
@@ -92,3 +93,6 @@ dragDrop()
 geo()
 
 
+
+/* History */
+historial()
