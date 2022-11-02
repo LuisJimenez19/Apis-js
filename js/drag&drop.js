@@ -139,7 +139,6 @@ export default function dragDrop() {
 
             if (navigator.onLine) {
                 let url = event.target.style.backgroundImage;
-                console.log(event.target.style.backgroundImage)
                 zoneDrop.style.backgroundImage = url
             } else {
                 let bgColor = event.target.style.backgroundColor;

@@ -93,7 +93,7 @@ export default function ToDoList() { /* Lo mejor seria pasarle por parametros to
     /* Agregar las tareas al arreglo de las tareas después guarda las tareas en el LocalStorage y en renderiza */
 
     document.addEventListener('keypress',(e)=> {
-        
+        e.preventDefault
         if (e.key == 'Enter' && document.activeElement == inputTask) {
             addTask()
         }

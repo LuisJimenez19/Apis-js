@@ -111,7 +111,8 @@ body {
     position: fixed;
     transition: all 0.3s ease-in-out;
 
-    z-index: 700; /* se posiciona delante de la wave pero antes del icon hamburguesa */
+    z-index: 700;
+    /* se posiciona delante de la wave pero antes del icon hamburguesa */
 }
 
 .nav--active {
@@ -622,11 +623,12 @@ body {
 }
 
 /* <------------------------------------------------TEXTURIZADOR---------------------> */
-#dragDrop{
+#dragDrop {
     display: block;
-    
+
 }
-.texturas{
+
+.texturas {
     margin-top: -10px;
     width: 100%;
     display: flex;
@@ -636,7 +638,8 @@ body {
     align-items: center;
 
 }
-.texturas__title{
+
+.texturas__title {
     width: 100%;
     text-align: center;
     font-size: 1.1em;
@@ -645,7 +648,7 @@ body {
     text-transform: uppercase;
 }
 
-.textura{
+.textura {
     height: 80px;
     background-color: #000;
     border-radius: 5px;
@@ -665,31 +668,33 @@ body {
     transition: all .2s;
 }
 
-.textura.textura--touch{
+.textura.textura--touch {
     position: absolute;
     z-index: 10000;
 }
 
 
-.textura:hover{
+.textura:hover {
     cursor: pointer;
     filter: brightness(1.3);
 }
-.textura:active{
+
+.textura:active {
     opacity: .6;
 }
 
 @media (min-width:991px) {
-    .textura{
+    .textura {
         height: 200px;
     }
 }
-.btn-refresh{
+
+.btn-refresh {
     display: block;
     text-align: center;
     max-width: 300px;
 
-    margin:10px auto;
+    margin: 10px auto;
     padding: 10px 20px;
 
     background-color: #10194f;
@@ -701,20 +706,21 @@ body {
     cursor: pointer;
     transition: all .3s;
 }
-.btn-refresh.show{
+
+.btn-refresh.show {
     opacity: 1;
     pointer-events: all;
 }
 
-.btn-refresh.show:hover{
+.btn-refresh.show:hover {
     filter: brightness(1.3);
     transform: scale(1.02);
 }
 
-.drop-zone{
+.drop-zone {
     width: 100%;
     outline: 5px dashed #eee;
-    background: radial-gradient(rgba(0, 0, 0, 0.247),rgba(0, 0, 0, 0.37));
+    background: radial-gradient(rgba(0, 0, 0, 0.247), rgba(0, 0, 0, 0.37));
     margin-top: 30px;
     height: 50vh;
 
@@ -724,7 +730,7 @@ body {
     background-repeat: no-repeat;
 }
 
-.modal-error{
+.modal-error {
     width: 100%;
     height: 100vh;
     position: fixed;
@@ -739,12 +745,76 @@ body {
     opacity: 0;
 }
 
-.error{
+.error {
     padding: 30px 8px;
     min-height: 80px;
     background-color: #f2f2f2;
 }
 
-.modal-error.show{
+.modal-error.show {
     opacity: 1;
+}
+
+
+
+/* <--------------------------------Geolocation--------------------------> */
+
+.geolocation-section {
+    text-align: center;
+    color: #f3f3f3;
+
+    width: 100%;
+    height: 100%;
+
+   
+
+
+    padding: 30px 0;
+    background: radial-gradient(rgba(255, 255, 255, 0.281) 60%, transparent);
+    backdrop-filter: blur(20px);
+}
+
+.coords {
+    width: 100%;
+    min-height: 60%;
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.coord{
+    font-size: 1.5em;
+    color: #000;
+}
+
+.coord--hide{
+    display: none;
+}
+
+.coord span{
+   color: #fff;
+}
+
+.btn-get-coords {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 10px auto;
+    position: absolute;
+    bottom: 0;
+
+    border-radius: 30px;
+
+    background-color: slateblue;
+    transition: .3s;
+    cursor: pointer;
+
+}
+
+.btn-get-coords:hover {
+    opacity: .5;
+    color: #fff;
 }

@@ -9,12 +9,13 @@
     <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="./css/styles.css">
     <!-- iCONS -->
-    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-    
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
 </head>
 
 <body>
-    <header class="header">
+    <header class="header" id="header">
 
 
         <div class="logo">
@@ -38,12 +39,12 @@
         <aside class="aside-bg d-none">
             <nav class="nav">
                 <ul class="nav-bar">
-                    <li class="nav__item link--active"><a href="#date" class="nav-link nav-link1 active">Objeto Date</a>
-                    </li>
+                    <li class="nav__item link--active"><a href="#header" class="nav-link nav-link">Inicio</a></li>
+                    <li class="nav__item link--active"><a href="#date" class="nav-link nav-link1">Objeto Date</a></li>
                     <li class="nav__item"><a href="#LocalStorage" class="nav-link nav-link2">Local Storage</a></li>
                     <li class="nav__item"><a href="#dragDrop" class="nav-link nav-link3">Darg and Drop</a></li>
-                    <li class="nav__item"><a href="#seccion3" class="nav-link nav-link4">Lorem, ipsum dolor.</a></li>
-                    <li class="nav__item"><a href="#seccion4" class="nav-link nav-link5">Lorem, ipsum dolor.</a></li>
+                    <li class="nav__item"><a href="#geolocation" class="nav-link nav-link4">Geolocalización</a></li>
+                    <li class="nav__item"><a href="#history" class="nav-link nav-link5">history</a></li>
                 </ul>
             </nav>
         </aside>
@@ -119,37 +120,67 @@
 
             <section id="dragDrop" class="section">
 
-            <div class="dragDrop-section">
-                <div class="head">
-                    <h2 class="head__title">Drag and Drop</h2>
-                    <p class="head__subtitle">Texturizador</p>
-                </div>
+                <div class="dragDrop-section">
+                    <div class="head">
+                        <h2 class="head__title">Drag and Drop</h2>
+                        <p class="head__subtitle">Texturizador</p>
+                    </div>
 
-                <div class="texturas">
-                    <!-- <h2 class="texturas__title">texturas</h2> -->
-                    <div class="textura1 textura"></div>
+                    <div class="texturas">
+                        <!-- <h2 class="texturas__title">texturas</h2> -->
+                        <!-- <div class="textura1 textura"></div>
                     <div class="textura2 textura"></div>
                     <div class="textura3 textura"></div>
                     <div class="textura4 textura"></div>
-                    <div class="textura5 textura"></div>
-                </div>
-                
-                <div class="drop-zone"></div>
-                <a class="btn-refresh">Refrescar</a>
-                <div class="modal-error">
-                    <div class="error">
-                        <p>Revisa tu conexión a internet</p>
+                    <div class="textura5 textura"></div> -->
+                        <div class="textura1 textura"></div>
+                        <div class="textura2 textura"></div>
+                        <div class="textura3 textura"></div>
+                        <div class="textura4 textura"></div>
+                        <div class="textura5 textura"></div>
+                        <div class="textura6 textura"></div>
+                        <div class="textura7 textura"></div>
+
+                    </div>
+
+                    <div class="drop-zone"></div>
+                    <a class="btn-refresh">Refrescar</a>
+                    <div class="modal-error">
+                        <div class="error">
+                            <p>Revisa tu conexión a internet</p>
+                        </div>
                     </div>
                 </div>
-            </div>    
-            
-            
+
+
             </section>
-            <section id="seccion3" class="section">Seccion 3</section>
+
+
+
+            <section id="geolocation" class="section">
+                <div class="geolocation-section">
+                    <h1 class="title">Geolocalización</h1>
+                    <div class="coords">
+                        <p class="coord">latitud : <span id="latitud"></span></p>
+                        <p class="coord">Longitud: <span id="longitud"></span></p>
+                        <p class="coord coord--hide">Altitud: <span id="altitud"></span></p>
+                        <a class="btn-get-coords">Obtener coordenadas</a>
+                    </div>
+                </div>
+            </section>
+
+
+            <section id="history" class="section">
+                <div class="history-section">
+                    <h1 class="title">History</h1>
+
+                
+                </div>
+            </section>
         </main>
     </div>
     <!-- FONT AWESOME -->
-    <script src="./js/fontawesome.js" ></script>
+    <script src="./js/fontawesome.js"></script>
     <!-- AXIOS -->
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="./js/main.js"></script>
