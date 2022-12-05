@@ -22,44 +22,46 @@ crear almacén de objetos cone le método createObjetctStore()
 Escuchar los eeventos de exito o de error
  */
 
-let themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
-let themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
+if (document.getElementById("theme-toggle-dark-icon")) {
+    let themeToggleDarkIcon = document.getElementById("theme-toggle-dark-icon");
+    let themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
 
-// Change the icons inside the button based on previous settings
-if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-    themeToggleLightIcon.classList.remove("hidden");
-} else {
-    themeToggleDarkIcon.classList.remove("hidden");
-}
-
-let themeToggleBtn = document.getElementById("theme-toggle");
-
-themeToggleBtn.addEventListener("click", function () {
-    // toggle icons inside button
-    themeToggleDarkIcon.classList.toggle("hidden");
-    themeToggleLightIcon.classList.toggle("hidden");
-
-    // if set via local storage previously
-    if (localStorage.getItem("color-theme")) {
-        if (localStorage.getItem("color-theme") === "light") {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-        } else {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-        }
-
-        // if NOT set via local storage previously
+    // Change the icons inside the button based on previous settings
+    if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        themeToggleLightIcon.classList.remove("hidden");
     } else {
-        if (document.documentElement.classList.contains("dark")) {
-            document.documentElement.classList.remove("dark");
-            localStorage.setItem("color-theme", "light");
-        } else {
-            document.documentElement.classList.add("dark");
-            localStorage.setItem("color-theme", "dark");
-        }
+        themeToggleDarkIcon.classList.remove("hidden");
     }
-});
+
+    let themeToggleBtn = document.getElementById("theme-toggle");
+
+    themeToggleBtn.addEventListener("click", function () {
+        // toggle icons inside button
+        themeToggleDarkIcon.classList.toggle("hidden");
+        themeToggleLightIcon.classList.toggle("hidden");
+
+        // if set via local storage previously
+        if (localStorage.getItem("color-theme")) {
+            if (localStorage.getItem("color-theme") === "light") {
+                document.documentElement.classList.add("dark");
+                localStorage.setItem("color-theme", "dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+                localStorage.setItem("color-theme", "light");
+            }
+
+            // if NOT set via local storage previously
+        } else {
+            if (document.documentElement.classList.contains("dark")) {
+                document.documentElement.classList.remove("dark");
+                localStorage.setItem("color-theme", "light");
+            } else {
+                document.documentElement.classList.add("dark");
+                localStorage.setItem("color-theme", "dark");
+            }
+        }
+    });
+}
 
 
 export default function indexedDB() {
@@ -129,7 +131,7 @@ export default function indexedDB() {
             const IDBoperation = openTransaction("users", "readonly");
             const request = IDBoperation.get(key);
             return request
-            
+
         }
 
         /* Función que trae a los usuarios que esten en la base datos */
@@ -184,13 +186,12 @@ export default function indexedDB() {
             const IDBoperation = openTransaction("users", "readwrite")
             const resquest = IDBoperation.clear()
             alert("Datos borrados exitosamente")
-            
+
         }
 
         /* Función que conecta el front con el back */
         function main() {
 
-            console.log(tBody.children.length)
             if (tBody.children.length === 0) {
                 table.classList.add('hidden')
             } else {
@@ -264,7 +265,7 @@ export default function indexedDB() {
 
             /* renderiza los usuarios */
             function renderUsers(arr, one = false) {
-                
+
                 if (one === true) {
                     // tBody.innerHTML = ""
                     let tr =
@@ -347,7 +348,8 @@ export default function indexedDB() {
             /* Filtro el input del dni */
             inputDni.addEventListener('keypress', (e => {
                 let value = e.target.value
-                e.target.value = parseInt(value.toString().slice(0, 7))
+                value = value.toString().slice(0, 7)
+                e.target.value = value
             }))
 
 
@@ -445,7 +447,7 @@ export default function indexedDB() {
 
 
                 putBtn.onclick = () => {
-                    
+
                     updateUser(user)
                 }
 

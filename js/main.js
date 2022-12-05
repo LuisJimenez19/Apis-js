@@ -104,4 +104,4 @@ historial()
 readerFn()
 
 /* IndexedDB */
-indexedDB()
+// indexedDB()
