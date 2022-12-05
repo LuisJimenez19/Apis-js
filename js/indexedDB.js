@@ -77,7 +77,8 @@ export default function indexedDB() {
         /* Petición para abrir la base de datos  */
         const request = indexedDB.open("colpatria", 1);
 
-        /* evento que registra que todo salio bien */
+        /* evento que registra que todo salio bien, si todo sale bien llama a la funcion MAIN que contiene toda la interactividad con el cliente, 
+        en esta parte estan las conecciones a la BD en algunas funciones se usa callBacks y en otras se devuele el objeto request, tenga entendido que esto es una practica */
         request.addEventListener("success", (e) => {
             main();
         });
