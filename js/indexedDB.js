@@ -73,6 +73,8 @@ export default function indexedDB() {
     const putBtn = document.getElementById('put-user')
     const deleteBtn = document.getElementById('delete-user');
 
+    const UrlPhotoDefault = 'https://pm1.narvii.com/6471/30c93dd5e859d344d0a743dcf2a94aa5d8618b31_hq.jpg'
+
     if (indexedDB) {
         /* Petición para abrir la base de datos  */
         const request = indexedDB.open("colpatria", 1);
@@ -226,7 +228,8 @@ export default function indexedDB() {
                     inputEmail.value = ""
                     inputPass.value = ""
 
-                    document.querySelector(".img-preview").src = "../src/1.jpg"
+                    document.querySelector(".img-preview").src = UrlPhotoDefault
+                    // document.querySelector(".img-preview").src = "../src/1.jpg"
                     inputName.placeholder = "Introduce tu nombre"
                     inputDni.placeholder = "introduce tu dni"
                     inputDni.removeAttribute("disabled")
@@ -361,7 +364,8 @@ export default function indexedDB() {
                         photo = fileState.result
                         if (!photo.includes('image')) {
                             alert('Por favor selecciona una imagen')
-                            photo = "../src/1.jpg"
+                            photo = UrlPhotoDefault
+                            // photo = "../src/1.jpg"
                         } else {
                             document.querySelector(".img-preview").src = photo
                         }
@@ -441,8 +445,7 @@ export default function indexedDB() {
 
 
                 putBtn.onclick = () => {
-                    b++
-                    console.log(b)
+                    
                     updateUser(user)
                 }
 
