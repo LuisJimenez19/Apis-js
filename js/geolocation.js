@@ -1,4 +1,4 @@
-'use strict'
+"use strict";
 /* 
 Esta API permite al usuario compartir su ubicación con la app si este lo desea
 
@@ -24,66 +24,64 @@ En ambos casos, la llamada al método toma hasta tres argumentos.
 */
 
 function geo() {
+	const latitudElement = document.querySelector("#latitud");
+	const longitudElement = document.querySelector("#longitud");
+	const altitudElement = document.querySelector("#altitud");
 
-    const latitudElement = document.querySelector('#latitud')
-    const longitudElement = document.querySelector('#longitud')
-    const altitudElement = document.querySelector('#altitud')
+	const btnGetCoords = document.querySelector(".btn-get-coords");
+	const btnStop = document.querySelector(".btn-stop-coords");
 
-    const btnGetCoords = document.querySelector('.btn-get-coords');
-    const btnStop = document.querySelector('.btn-stop-coords')
+	let watchID;
+	/* instanciamos */
+	const geolocation = navigator.geolocation;
+	// console.log(geolocation);
 
-    let watchID;
-    /* instanciamos */
-    const geolocation = navigator.geolocation
-    console.log(geolocation)
+	/* Opciones */
+	const options = {
+		maximumAge: 0 /* Cuanto tiempo se guarda en cache, cada cuanto solicitar la info */,
+		timeout: 500 /* tiempo */,
+		enableHightAccuracy: true /* alta precision */,
+	};
 
-    /* Opciones */
-    const options = {
-        maximumAge: 0, /* Cuanto tiempo se guarda en cache, cada cuanto solicitar la info */
-        timeout: 500, /* tiempo */
-        enableHightAccuracy: true /* alta precision */
-    }
+	/* Hay un error */
+	function errPosition(e) {
+		// console.log(e);
+	}
 
+	/* Sale todo bien */
+	function resPosition(position) {
+		let lat = position.coords.latitude;
+		let long = position.coords.longitude;
+		let alt = position.coords.altitude;
 
-    /* Hay un error */
-    function errPosition(e) {
-        console.log(e)
-    }
+		latitudElement.textContent = lat;
+		longitudElement.textContent = long;
 
+		/* Por si es un dispositivo que pueda medir la altitud entonces lo va a mostrar */
+		if (alt == null) {
+			altitudElement.parentElement.classList.add("coord--hide");
+		} else {
+			altitudElement.parentElement.classList.remove("coord--hide");
+		}
 
-    /* Sale todo bien */
-    function resPosition(position) {
-        let lat = position.coords.latitude
-        let long = position.coords.longitude
-        let alt = position.coords.altitude
+		altitudElement.textContent = alt;
+	}
 
+	btnGetCoords.addEventListener("click", () => {
+		watchID = geolocation.watchPosition(
+			resPosition,
+			errPosition,
+			options
+		); /* Se ejecuta cada cierto tiempo */
+		// geolocation.getCurrentPosition(resPosition)
+	});
 
-        latitudElement.textContent = lat
-        longitudElement.textContent = long
-
-        /* Por si es un dispositivo que pueda medir la altitud entonces lo va a mostrar */
-        if (alt == null) {
-            altitudElement.parentElement.classList.add('coord--hide')
-        } else {
-            altitudElement.parentElement.classList.remove('coord--hide')
-        }
-
-        altitudElement.textContent = alt
-
-    }
-
-    btnGetCoords.addEventListener('click', () => {
-        watchID = geolocation.watchPosition(resPosition,errPosition,options) /* Se ejecuta cada cierto tiempo */
-        // geolocation.getCurrentPosition(resPosition)
-    })
-
-    btnStop.addEventListener('click', () => {
-        geolocation.clearWatch(watchID)
-        latitudElement.textContent = ''
-        longitudElement.textContent = ''
-        altitudElement.textContent = ''
-    })
+	btnStop.addEventListener("click", () => {
+		geolocation.clearWatch(watchID);
+		latitudElement.textContent = "";
+		longitudElement.textContent = "";
+		altitudElement.textContent = "";
+	});
 }
 
-
-export default geo
+export default geo;

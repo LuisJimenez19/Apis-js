@@ -12,7 +12,7 @@ Retroceder y avanzar a través del historial del usuario utilizando los métodos
         // history.length para ver cuantas paginas estan en la pila
 
 
-    metodods que reciben 3 parametros 
+    metodos que reciben 3 parametros 
         history.pushState( {clave : "valor"}, "titulo de la pagina", "url") => crea una nueva entrada para el historial 
 //                             obj estado  ,     titulo,      url    => se puede ver el estado con el 'evento popstate'
 
@@ -24,6 +24,8 @@ Retroceder y avanzar a través del historial del usuario utilizando los métodos
 
 function historial() {
     // history.back()
+
+    /* Todavia no se me ocurre como implementarlo */
 }
 
 export default historial;

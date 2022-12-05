@@ -3,10 +3,10 @@
 // Usa la fecha del navergador, si no, se le puede especificar atraves de los parametros
 const date = new Date();
 
-console.log(date.getDate()) /* => devuelve el dia del mes */
+// console.log(date.getDate()) /* => devuelve el dia del mes */
 date.getDay() /* => devuelve el indice de dia 0 a 6 -> Domingo a sabado */
 date.getMonth() /* => devuelve el mes indice 0 al 11 -> enero a diciembre */
-console.log(date.getFullYear()) /* => Devuelve el año actual ||  .getYear devuelve el año actual menos 1900 */
+// console.log(date.getFullYear()) /* => Devuelve el año actual ||  .getYear devuelve el año actual menos 1900 */
 
 date.getHours() /* => hora del día actual */
 date.getMinutes() /* => minutos de la hora actual */
@@ -16,13 +16,11 @@ date.getSeconds() /* => devuelve los segundos del minuto actual */
 
 
 const fechaActual = date.toDateString()
-console.log(`la fecha actual es ${fechaActual}`)
 
 
 export default function digitalClock(reloj, playBtn, stopBtn) {
     let clock;
     playBtn.addEventListener('click', () => {
-        console.log('hola')
         playBtn.style = 'pointer-events: none;'
         playBtn.classList.add('controll--active')
         clock = setInterval(() => {

@@ -1,93 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Apis</title>
+		<!-- CUSTOM CSS -->
+		<link rel="stylesheet" href="./css/styles.css" />
+		<!-- iCONS -->
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+			/>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apis</title>
-    <!-- CUSTOM CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
-    <!-- iCONS -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<body>
+		<header class="header" id="header">
+			<div class="logo">
+				<p>Luis Angel</p>
+			</div>
+			<div class="container">
+				<h1>Apis de js</h1>
+				<p>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit.
+					Ducimus provident neque corporis sint, reiciendis, eum odio
+					magni pariatur voluptate perferendis accusantium tempore
+					voluptatem explicabo dolorum consequatur qui deserunt
+					veritatis aperiam?
+				</p>
+			</div>
+		</header>
 
-</head>
+		<div class="wave-header"></div>
 
-<body>
-    <header class="header" id="header">
+		<div class="container-principal">
+			<aside class="aside-bg d-none">
+				<nav class="nav">
+					<ul class="nav-bar">
+						<li class="nav__item">
+							<a href="#header" class="nav-link nav-link">Inicio</a>
+						</li>
+						<li class="nav__item">
+							<a href="#date" class="nav-link nav-link1">Objeto Date</a>
+						</li>
+						<li class="nav__item">
+							<a href="#LocalStorage" class="nav-link nav-link2">Local Storage</a>
+						</li>
+						<li class="nav__item">
+							<a href="#dragDrop" class="nav-link nav-link3">Darg and Drop</a>
+						</li>
+						<li class="nav__item">
+							<a href="#geolocation" class="nav-link nav-link4">Geolocalización</a>
+						</li>
+						<li class="nav__item">
+							<a href="#history" class="nav-link nav-link5">history</a>
+						</li>
+						<li class="nav__item">
+							<a href="#FileReader" class="nav-link nav-link6">FilerReader</a>
+						</li>
+						<li class="nav__item">
+							<a href="#indexedDB" class="nav-link nav-link6">indexedDB</a>
+						</li>
+					</ul>
+				</nav>
+			</aside>
 
+			<div class="hamburger hamburger--arrowturn">
+				<div class="hamburger-box">
+					<div class="hamburger-inner"></div>
+				</div>
+			</div>
 
-        <div class="logo">
-            <p>Luis Angel</p>
-        </div>
-        <div class="container">
-            <h1>Apis de js</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus provident neque corporis sint,
-                reiciendis,
-                eum odio magni pariatur voluptate perferendis accusantium tempore voluptatem explicabo dolorum
-                consequatur
-                qui deserunt veritatis aperiam?</p>
-        </div>
+			<main class="main-container">
+				<section id="date" class="section section-date">
+					<div class="reloj-container">
+						<div id="reloj">00:00</div>
+						<div class="reloj-controls">
+							<a id="play-reloj" class="reloj__controll">Iniciar reloj</a>
+							<a id="stop-reloj" class="reloj__controll">Detener reloj</a>
+						</div>
+					</div>
+				</section>
 
-    </header>
+				<section id="LocalStorage" class="section">
+					<div class="todo-list">
+						<div class="head">
+							<h2 class="head__title">To Do List</h2>
+							<p class="head__subtitle">Local Storage</p>
+							<form class="add-task">
+								<input
+									id="input-task"
+									class="input-task"
+									type="text"
+									placeholder="Añade tu tarea"
+									/><span class="inputFocus"></span>
+								<span
+									id="btn-add-task"
+									class="material-symbols-outlined icon">add
+								</span>
+							</form>
+						</div>
 
-    <div class="wave-header"></div>
-
-    <div class="container-principal">
-
-        <aside class="aside-bg d-none">
-            <nav class="nav">
-                <ul class="nav-bar">
-                    <li class="nav__item"><a href="#header" class="nav-link nav-link">Inicio</a></li>
-                    <li class="nav__item "><a href="#date" class="nav-link nav-link1">Objeto Date</a></li>
-                    <li class="nav__item"><a href="#LocalStorage" class="nav-link nav-link2">Local Storage</a></li>
-                    <li class="nav__item"><a href="#dragDrop" class="nav-link nav-link3">Darg and Drop</a></li>
-                    <li class="nav__item"><a href="#geolocation" class="nav-link nav-link4">Geolocalización</a></li>
-                    <li class="nav__item"><a href="#history" class="nav-link nav-link5">history</a></li>
-                </ul>
-            </nav>
-        </aside>
-
-        <div class="hamburger hamburger--arrowturn">
-            <div class="hamburger-box">
-                <div class="hamburger-inner"></div>
-            </div>
-        </div>
-
-        <main class="main-container">
-
-            <section id="date" class="section section-date">
-                <div class="reloj-container">
-                    <div id="reloj">00:00</div>
-                    <div class="reloj-controls">
-                        <a id="play-reloj" class="reloj__controll">Iniciar reloj</a>
-                        <a id="stop-reloj" class="reloj__controll">Detener reloj</a>
-                    </div>
-                </div>
-            </section>
-
-
-            <section id="LocalStorage" class="section">
-                <div class="todo-list">
-                    <div class="head">
-                        <h2 class="head__title">To Do List</h2>
-                        <p class="head__subtitle">Local Storage</p>
-                        <form class="add-task">
-                            <input id="input-task" class="input-task" type="text" placeholder="Añade tu tarea"><span
-                                class="inputFocus"></span>
-                            <span id="btn-add-task" class="material-symbols-outlined icon">add
-                            </span>
-                        </form>
-                    </div>
-
-                    <article class="container-task">
-
-                        <div class="task-to-complete container-50">
-                            <h5>Tareas a Realizar</h5>
-                            <div class="tasks-to-do">
-
-                                <!-- <div class="task-to-do">
+						<article class="container-task">
+							<div class="task-to-complete container-50">
+								<h5>Tareas a Realizar</h5>
+								<div class="tasks-to-do">
+									<!-- <div class="task-to-do">
                                     <p>
                                         <span class="index-task">1</span>
                                         Realizar un To Do List con LocalStorage
@@ -95,100 +113,143 @@
 
                                     <span class="material-symbols-outlined icon icon-done">done</span>
                                 </div> -->
+								</div>
 
-                            </div>
+								<div class="btn-container disabled">
+									<a class="btn btn-remove-all">Eliminar Todo
+										<span class="material-symbols-outlined">close</span></a>
+								</div>
+							</div>
 
+							<div class="task-completed-container container-50">
+								<h5>Tareas Completas</h5>
+								<div class="tasks-completed"></div>
 
-                            <div class="btn-container disabled"><a class="btn btn-remove-all">Eliminar Todo <span
-                                        class="material-symbols-outlined">close</span></a></div>
-                        </div>
+								<div class="btn-container disabled">
+									<a class="btn btn-clear-all">Limpiar Todo
+										<span class="material-symbols-outlined">delete</span></a>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
 
-                        <div class="task-completed-container container-50">
-                            <h5>Tareas Completas</h5>
-                            <div class="tasks-completed"></div>
+				<section id="dragDrop" class="section">
+					<div class="dragDrop-section">
+						<div class="head">
+							<h2 class="head__title">Drag and Drop</h2>
+							<p class="head__subtitle">Texturizador</p>
+						</div>
 
-                            <div class="btn-container disabled"><a class="btn btn-clear-all">Limpiar Todo <span
-                                        class="material-symbols-outlined">delete</span></a></div>
-                        </div>
+						<div class="texturas">
+							<div class="textura1 textura"></div>
+							<div class="textura2 textura"></div>
+							<div class="textura3 textura"></div>
+							<div class="textura4 textura"></div>
+							<div class="textura5 textura"></div>
+							<div class="textura6 textura"></div>
+							<div class="textura7 textura"></div>
+						</div>
+						<!-- ZONA DROP -->
+						<div class="drop-zone"></div>
+						<a class="btn-refresh">Refrescar</a>
+						<!-- MODAL ERROR -->
+						<div class="modal-error">
+							<div class="error">
+								<p>Revisa tu conexión a internet</p>
+							</div>
+						</div>
+					</div>
+				</section>
 
-                    </article>
-                </div>
+				<section id="geolocation" class="section">
+					<div class="geolocation-section">
+						<h1 class="title">Geolocalización</h1>
+						<div class="coords">
+							<p class="coord">
+								latitud : <span id="latitud"></span>
+							</p>
+							<p class="coord">
+								Longitud: <span id="longitud"></span>
+							</p>
+							<p class="coord coord--hide">
+								Altitud: <span id="altitud"></span>
+							</p>
+							<a class="btn-get-coords">Obtener coordenadas</a>
+							<a class="btn-stop-coords">detener</a>
+						</div>
+					</div>
+				</section>
 
+				<section id="history" class="section">
+					<div class="history-section">
+						<h1 class="title">History</h1>
+						<ul>
+							<li class="item-history">
+								Manipulando el historial del navegador <br />
+								El objeto DOM window proporciona acceso al
+								historial del navegador a través del objeto
+								history . <br />
+								Este da acceso a métodos y propiedades útiles
+								que permiten avanzar y retroceder a través del
+								historial del usuario, así como --a partir de
+								HTML5-- manipular el contenido del historial.
+								<br />
 
-            </section>
+								Viajando a través del historial <br />
+								Retroceder y avanzar a través del historial del
+								usuario utilizando los métodos back(), forward()
+								y go(). <br />
+								back => vuelve a la pagina anterior <br />
+								forward => la pagina siguiente <br />
+								go() => se le indica a que pagina ir
+								relativamente partiendo desde la pagina actual
+								[0] <br />
 
+								// history.length para ver cuantas paginas estan
+								en la pila <br />
 
-            <section id="dragDrop" class="section">
+								metodos que reciben 3 parametros <br />
+								history.pushState( {clave : "valor"}, "titulo de
+								la pagina", "url") => crea una nueva entrada
+								para el historial <br />
+								// obj estado , titulo, url => se puede ver el
+								estado con el 'evento popstate' <br />
 
-                <div class="dragDrop-section">
-                    <div class="head">
-                        <h2 class="head__title">Drag and Drop</h2>
-                        <p class="head__subtitle">Texturizador</p>
-                    </div>
+								history.replaceState() => recibe los mismo
+								parametros, modifica la url pero no la conserva
+								<br />
+							</li>
+						</ul>
+					</div>
+				</section>
 
-                    <div class="texturas">
-                        <!-- <h2 class="texturas__title">texturas</h2> -->
-                        <!-- <div class="textura1 textura"></div>
-                    <div class="textura2 textura"></div>
-                    <div class="textura3 textura"></div>
-                    <div class="textura4 textura"></div>
-                    <div class="textura5 textura"></div> -->
-                        <div class="textura1 textura"></div>
-                        <div class="textura2 textura"></div>
-                        <div class="textura3 textura"></div>
-                        <div class="textura4 textura"></div>
-                        <div class="textura5 textura"></div>
-                        <div class="textura6 textura"></div>
-                        <div class="textura7 textura"></div>
+				<section id="FileReader" class="section">
+					<div class="file-section">
+						<h1 class="title">FileReader</h1>
+						<ul>
+							<label for="file">Seleccione un archivo</label>
+							<input type="file" id="file" />
+							<dir class="bar-progress"></dir>
+						</ul>
+						<div class="result-file"></div>
+					</div>
+				</section>
 
-                    </div>
-
-                    <div class="drop-zone"></div>
-                    <a class="btn-refresh">Refrescar</a>
-                    <div class="modal-error">
-                        <div class="error">
-                            <p>Revisa tu conexión a internet</p>
-                        </div>
-                    </div>
-                </div>
-
-
-            </section>
-
-
-
-            <section id="geolocation" class="section">
-                <div class="geolocation-section">
-                    <h1 class="title">Geolocalización</h1>
-                    <div class="coords">
-                        <p class="coord">latitud : <span id="latitud"></span></p>
-                        <p class="coord">Longitud: <span id="longitud"></span></p>
-                        <p class="coord coord--hide">Altitud: <span id="altitud"></span></p>
-                        <a class="btn-get-coords">Obtener coordenadas</a>
-                        <a class="btn-stop-coords">detener</a>
-                    </div>
-                </div>
-            </section>
-
-
-            <section id="history" class="section">
-                <div class="history-section">
-                    <h1 class="title">History</h1>
-                        <ul>
-                            <li class="item-history"></li>
-                            <li class="item-history"></li>
-                            <li class="item-history"></li>
-                        </ul>
-                
-                </div>
-            </section>
-        </main>
-    </div>
-    <!-- FONT AWESOME -->
-    <script src="./js/fontawesome.js"></script>
-    <!-- AXIOS -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="module" src="./js/main.js"></script>
-</body>
-
+				<section id="indexedDB" class="section">
+					<div class="indexedDB-section">
+						<a class="indexedDB-a" href="./indexedDB.html">
+							<h1 class="title">indexedDB</h1>
+						</a>
+					</div>
+				</section>
+			</main>
+			
+		</div>
+		<!-- FONT AWESOME -->
+		<script src="./js/fontawesome.js"></script>
+		<!-- AXIOS -->
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+		<script type="module" src="./js/main.js"></script>
+	</body>
 </html>

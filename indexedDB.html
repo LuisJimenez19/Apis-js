@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="./css/styles.css"> -->
+    <link rel="stylesheet" href="./css/tailwind.css" />
+    <title>Indexed DB</title>
+  </head>
+  <body class="dark:bg-teal-900">
+    <header class="flex justify-center mt-5 bg-zinc-100 dark:bg-gray-700">
+      <div>
+        <h3 class="dark:text-zinc-100 text-gray-900 text-2xl text-center">
+          IndexedDB
+        </h3>
+        <h1
+          class="dark:text-zinc-50 text-gray-900 text-5xl text-center font-sans
+          font-bold">
+          COLPATRIA
+        </h1>
+      </div>
+      <a
+        id="theme-toggle"
+        type="button"
+        class="cursor-pointer absolute right-5 top-10 text-gray-500
+        dark:text-gray-400
+        hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4
+        focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5
+        border shadow">
+        <svg
+          id="theme-toggle-dark-icon"
+          class="hidden w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586
+            10.586z"></path>
+        </svg>
+        <svg
+          id="theme-toggle-light-icon"
+          class="hidden w-5 h-5"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0
+            4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1
+            0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0
+            11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0
+            100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05
+            6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414
+            1.414l.707.707zm1.414 8.486l-.707.707a1 1 0
+            01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1
+            0 000 2h1z"
+            fill-rule="evenodd"
+            clip-rule="evenodd"></path>
+        </svg>
+      </a>
+    </header>
+
+    <!-- Form MODAL -->
+    <section class="bg-black bg-opacity-75 absolute w-full h-full left-0 top-0
+      z-10 place-content-center grid hidden" id="modal-form">
+
+      <div class="bg-white dark:bg-zinc-600 min-h-max p-5 rounded-xl w-10/12
+        mx-auto max-w-3xl">
+        <div class="relative">
+          <h2 class="text-center my-5 text-2xl font-mono border-b-2
+            rounded-2xl" id="form-title">Agregar
+            Usuario</h2>
+          <span class="absolute right-0 -top-3 bg-red-700 w-8 h-8 grid
+            place-content-center rounded-full text-gray-300 font-bold
+            cursor-pointer" id="close">X</span>
+        </di>
+        <form id="form" class="font-normal flex justify-center items-center
+          gap-5
+          flex-wrap">
+          <!-- Nombre -->
+          <div class="flex justify-end items-center">
+            <label for="name" class="mr-2 text-lg dark:text-white">Nombre</label>
+            <input required placeholder="Escribe tu nombre" id="name"
+              type="text"
+              class="bg-zinc-200 p-3 outline-none rounded-xl
+              focus:rounded-2xl drop-shadow focus:outline-teal-600">
+          </div>
+
+          <!-- DNI -->
+          <div class="flex justify-end items-center">
+            <label for="dni" class="mr-2 text-lg dark:text-white">DNI</label>
+            <input required placeholder="Escribe tu dni" id="dni" type="number"
+              maxlength="8"
+              class="bg-zinc-200 p-3 outline-none rounded-xl
+              focus:rounded-2xl drop-shadow focus:outline-teal-600">
+          </div>
+
+          <!-- EMAIL -->
+          <div class="flex justify-end items-center">
+            <label for="email" class="mr-2 text-lg dark:text-white">Email</label>
+            <input required placeholder="example@gmail.com" id="email"
+              type="email"
+              class="bg-zinc-200 p-3 outline-none rounded-xl
+              focus:rounded-2xl drop-shadow focus:outline-teal-600">
+          </div>
+
+          <!-- PASSWORD -->
+          <div class="flex justify-end items-center">
+            <label for="contraseña" class="mr-2 text-lg dark:text-white">Contraseña</label>
+            <input required placeholder="password" id="pass" type="password"
+              class="bg-zinc-200 p-3 outline-none rounded-xl
+              focus:rounded-2xl drop-shadow focus:outline-teal-600">
+          </div>
+
+          <!-- FOTO -->
+          <div class="flex justify-around items-center w-96 ">
+            <label for="file" class="mr-2 text-lg dark:text-white
+              bg-zinc-200 p-3 outline-none rounded-xl
+              focus:rounded-2xl drop-shadow py-2 px-5 cursor-pointer
+              hover:bg-zinc-400">Foto de
+              perfil</label>
+            <input id="file" type="file"
+              class="bg-zinc-200 outline-none rounded-xl
+              focus:rounded-2xl drop-shadow focus:outline-teal-600 hidden">
+
+            <!-- <div class="rounded-full w-32 ring-2 ring-gray-300
+              dark:ring-gray-500"> -->
+            <div>
+              <!-- <img class="ring-2 ring-gray-300 dark:ring-gray-500" src="./src/eZJyctBQ.jpg" alt="photo-default"> -->
+              <img class="p-1 w-32 h-32 rounded-full ring-2 ring-gray-300
+                dark:ring-gray-500 object-cover img-preview"
+                src="./src/1.jpg" alt="photo-perfil">
+
+            </div>
+
+          </div>
+
+
+          <!-- Botones -->
+          <div class="w-full flex justify-center">
+            <!-- ADD -->
+            <button id="add-user" class="relative inline-flex items-center
+              justify-center
+              p-0.5
+              mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900
+              rounded-lg group bg-gradient-to-br from-green-400 to-blue-600
+              group-hover:from-green-400 group-hover:to-blue-600
+              hover:text-white
+              dark:text-white focus:ring-4 focus:outline-none
+              focus:ring-green-200
+              dark:focus:ring-green-800">
+              <span class="relative px-5 py-2.5 transition-all ease-in
+                duration-75
+                bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Agregar
+              </span>
+            </button>
+            <!-- Update -->
+            <a class="text-white bg-gradient-to-r
+              from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br
+              focus:ring-4 focus:outline-none focus:ring-teal-300
+              dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5
+              py-2.5 text-center mr-2 mb-2 hidden cursor-pointer" id="put-user">Actualizar</a>
+            <!-- DELETE -->
+            <a class="relative inline-flex items-center justify-center
+              p-0.5
+              mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900
+              rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400
+              group-hover:from-pink-500 group-hover:to-orange-400
+              hover:text-white
+              dark:text-white focus:ring-4 focus:outline-none
+              focus:ring-pink-200
+              dark:focus:ring-pink-800 cursor-pointer" id="delete-user">
+              <span class="relative px-5 py-2.5 transition-all ease-in
+                duration-75
+                bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                Eliminar
+              </span>
+
+            </a>
+
+          </form>
+        </div>
+      </section>
+      <!-- Fin form -->
+
+      <!-- ADD USER -->
+      <section class="flex justify-center items-center h-20 gap-5 flex-wrap">
+        <a id="add-user-modal" type="button" class="text-white bg-gradient-to-r
+          from-teal-900 via-teal-800 to-teal-700 hover:bg-gradient-to-br
+          dark:bg-gradient-to-r dark:from-slate-900 dark:via-slate-800
+          dark:to-slate-700
+          dark:hover:bg-gradient-to-br
+          focus:ring-4 focus:outline-none focus:ring-teal-300
+          dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5
+          py-2.5 text-center mr-2 mb-2 cursor-pointer">Agregar usuario</a>
+
+        <a id="get-users" type="button" class="text-white bg-gradient-to-r
+          from-slate-900 via-slate-800 to-slate-700 hover:bg-gradient-to-br
+          focus:ring-4 focus:outline-none focus:ring-teal-300
+          dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5
+          py-2.5 text-center mr-2 mb-2 cursor-pointer">Mostrar Usuarios</a>
+      </section>
+
+
+      <!-- Table -->
+      <section class="mt-10 container m-auto ">
+
+        <div class="overflow-x-auto relative rounded-xl shadow-black">
+          <table class="w-full text-sm text-left text-gray-500
+            dark:text-gray-400 shadow-black " id="table">
+            <thead class="text-xs text-gray-100 uppercase bg-teal-900
+              dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="py-3 px-6">
+                  Nombre
+                </th>
+                <th scope="col" class="py-3 px-6">
+                  DNI
+                </th>
+                <th scope="col" class="py-3 px-6">
+                  Email
+                </th>
+                <th scope="col" class="py-3 px-6">
+
+                </th>
+              </tr>
+            </thead>
+            <tbody class="tbody">
+              <!-- <tr class="bg-zinc-300 border-b dark:bg-gray-800
+                dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600
+                cursor-pointer">
+                <th scope="row" class="py-4 px-6 font-medium text-gray-900
+                  whitespace-nowrap dark:text-white flex items-center gap-5">
+                  <img width="50" height="50" class="p-1 rounded-full ring-2
+                    ring-gray-300
+                    dark:ring-gray-500" src="./src/1.jpg" alt="photo">
+                  <p>
+                    Luis Angel
+                  </p>
+                </th>
+                <td class="py-4 px-6">
+                  1
+                </td>
+                <td class="py-4 px-6">
+                  luis@gmail.com
+                </td>
+                <td class="py-4 px-6">
+                  <a type="button" class="text-white bg-gradient-to-r
+                    from-slate-900 via-slate-800 to-slate-700
+                    hover:bg-gradient-to-br
+                    dark:bg-gradient-to-r
+                    dark:from-teal-900 dark:via-teal-800 dark:to-teal-700
+                    dark:hover:bg-gradient-to-br
+                    font-medium rounded-lg text-sm px-5
+                    py-2.5 text-center cursor-pointer">Ver mas</a>
+                </td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+
+
+
+      </section>
+      <!-- FIN TABLE -->
+      <div class="flex items-center justify-center absolute right-5 bottom-5">
+
+        <a href="./index.html" class="bg-neutral-200 px-2 py-2 text-lg border-neutral-400
+          border-2 text-neutral-600 hover:text-white
+          hover:shadow-[inset_13rem_0_0_0]
+          hover:shadow-blue-400 duration-[400ms,700ms]
+          transition-[color,box-shadow] rounded-md">
+          Home
+        </a>
+
+      </div>
+    </body>
+
+    <script type="module" src="./js/indexedDB.js"></script>
+  </html>

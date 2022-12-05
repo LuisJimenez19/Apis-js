@@ -3,6 +3,8 @@ import digitalClock from "./date.js";
 import ToDoList from "./ToDoList.js";
 import geo from "./geolocation.js";
 import historial from "./history.js";
+import readerFn from "./fileReader.js";
+import indexedDB from "./indexedDB.js";
 
 
 
@@ -96,3 +98,10 @@ geo()
 
 /* History */
 historial()
+
+
+/* FileReader */
+readerFn()
+
+/* IndexedDB */
+indexedDB()

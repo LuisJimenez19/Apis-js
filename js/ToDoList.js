@@ -85,7 +85,9 @@ export default function ToDoList() { /* Lo mejor seria pasarle por parametros to
 
     })
 
-
+    inputTask.addEventListener('submit', (e) => {
+        e.preventDefault()
+    })
 
 
 
