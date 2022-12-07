@@ -333,7 +333,6 @@ export default function indexedDB() {
                     }))
 
                 }
-                console.log(tBody.children.length)
                 if (tBody.children.length === 0) {
                     table.classList.add('hidden')
                 } else {
@@ -355,7 +354,7 @@ export default function indexedDB() {
 
             /* Funcion que guarda la imagen en la DB si no deja por defecto */
             const reader = new FileReader()
-            let photo = "../src/1.jpg"
+            let photo = UrlPhotoDefault
             inputPhoto.addEventListener('change', (e) => {
                 reader.readAsDataURL(inputPhoto.files[0]);
 
@@ -426,13 +425,8 @@ export default function indexedDB() {
             }
 
             /* Renderiza el formulario para actualizar o eliminar el user */
-            let b = 0
             function renderModalPut(user) {
-                // inputName.value = ""
-                // inputDni.value = ""
-                // inputEmail.value = ""
-                // inputPass.value = ""
-
+                
                 inputName.value = user.name
                 inputDni.value = user.DNI
                 inputEmail.value = user.email
