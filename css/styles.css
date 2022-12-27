@@ -32,6 +32,11 @@ input {
 	border: none;
 }
 
+p{
+	color: #ffffff;
+	font-size: 1.2em;
+}
+
 .container {
 	width: 90%;
 	margin: 0 auto;
@@ -933,5 +938,11 @@ video {
 .indexedDB-a:hover::before{
 	opacity: 1;
 	
+}
+
+.😍{
+	display: block;
+	margin: auto;
+
 }
 

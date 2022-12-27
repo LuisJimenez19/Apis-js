@@ -1,3 +1,4 @@
+"user strict"
 import dragDrop from "./drag&drop.js";
 import digitalClock from "./date.js";
 import ToDoList from "./ToDoList.js";
@@ -105,3 +106,46 @@ readerFn()
 
 /* IndexedDB */
 // indexedDB()
+
+/* No voy a crear otro archivo para probar matchMedia */
+
+// console.log(matchMedia("")); Función que permite verificar si una cierta consulta de medios es verdadera o no
+
+const mq = matchMedia("(max-width:768px)")
+/* En este caso estoy usando el resize de la ventana osea siempre va a mostrar el resultado de matches, pero si escucho el evento 'change' de mq, solo se dispararia cuando matches cambie su valor */
+window.onresize = (e) => {
+    console.log(mq.matches)
+}
+
+
+
+
+/* ---------------------------intersectionObserver------------ */
+/* Esta API permite monitorear elementos HTML dependiendo de si estos estan a la vista en el viewport y ejecutar codigo en función de esto
+yo lo use para darle estilos a los items del sidebar dependiendo de la sección actual, también se puede usar para hacer un "lazy load" , "infinte scroll" y mas. */
+
+
+/* -------------------Notifications----------------------------------- */
+
+// Para utilizar una API de notificaciones, primero debes obtener permiso del usuario para enviarle notificaciones.Luego, puedes utilizar JavaScript para enviar una solicitud a la API y especificar el contenido de la notificación.
+
+/* Primero verificamos que el navegador del usuario soporte esta API de lo contrario no servira */
+
+if (!"Notification" in window) {
+    console.table("Su navegador no soporta la API de Notifications")
+} else {
+    console.table("Si sirve esa monda")
+    /* Primero pedimos permiso */
+    Notification.requestPermission(() => {
+        /* Recibe un callback, aunque también se puede trabajar con promesas */ 
+        if (Notification.permission == "granted") {
+            /*Por si es aceptada  */            
+            new Notification("Hola mundo", {
+                body: "Mi primera notificación usando JS",
+                icon: "../src/1.jpg"
+            })
+        }
+        
+    })
+     
+}
