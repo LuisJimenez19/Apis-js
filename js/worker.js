@@ -1,0 +1,1 @@
+console.log("Este es el worker y pues te dice 'Hola mundo c:'")

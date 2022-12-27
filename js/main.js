@@ -111,10 +111,21 @@ readerFn()
 
 // console.log(matchMedia("")); Función que permite verificar si una cierta consulta de medios es verdadera o no
 
-const mq = matchMedia("(max-width:768px)")
+const mq = matchMedia("(max-width:500px)")
 /* En este caso estoy usando el resize de la ventana osea siempre va a mostrar el resultado de matches, pero si escucho el evento 'change' de mq, solo se dispararia cuando matches cambie su valor */
 window.onresize = (e) => {
-    console.log(mq.matches)
+    
+    if (mq.matches) {
+        document.querySelector('.😍').src = document.querySelector('.😍').getAttribute("data-src")
+    } else {
+        document.querySelector('.😍').src = "../src/godmillion.jpg"
+    }
+    
+}
+if (mq.matches) {
+    document.querySelector('.😍').src = document.querySelector('.😍').getAttribute("data-src")
+} else {
+    document.querySelector('.😍').src = "../src/godmillion.jpg"
 }
 
 
@@ -137,15 +148,25 @@ if (!"Notification" in window) {
     console.table("Si sirve esa monda")
     /* Primero pedimos permiso */
     Notification.requestPermission(() => {
-        /* Recibe un callback, aunque también se puede trabajar con promesas */ 
+        /* Recibe un callback, aunque también se puede trabajar con promesas */
         if (Notification.permission == "granted") {
-            /*Por si es aceptada  */            
+            /*Por si es aceptada  */
             new Notification("Hola mundo", {
                 body: "Mi primera notificación usando JS",
                 icon: "../src/1.jpg"
             })
         }
-        
+
     })
-     
+
 }
+
+
+
+
+/* ----------------------Web Workers------- */
+/* Un Web Worker es una característica de JavaScript que permite ejecutar código en un hilo separado del hilo principal del navegador. Esto puede ser útil para realizar tareas intensivas en el procesamiento de datos o para realizar tareas en segundo plano que no necesitan interactuar con la interfaz de usuario.
+Para utilizar un Web Worker en una aplicación web, se debe crear un archivo de JavaScript que contenga el código que se desea ejecutar en el hilo separado. Luego, se puede crear una instancia del Web Worker en el código principal de la aplicación y enviarle mensajes para iniciar su ejecución. El Web Worker ejecutará el código en un hilo separado y puede enviar mensajes de vuelta al hilo principal para proporcionar resultados o notificar el progreso. */
+
+const worker = new Worker('./worker.js')
+console.log(worker)
