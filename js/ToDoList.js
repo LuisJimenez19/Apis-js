@@ -16,6 +16,9 @@
 
 export default function ToDoList() { /* Lo mejor seria pasarle por parametros todo los elementos que vamos a usar, asi seria una función mas reutilizable */
     'use strcit'
+
+    const form = document.querySelector(".add-task")
+
     const inputTask = document.querySelector('#input-task');
     const btnAddTask = document.querySelector('#btn-add-task');
 
@@ -85,25 +88,12 @@ export default function ToDoList() { /* Lo mejor seria pasarle por parametros to
 
     })
 
-    inputTask.addEventListener('submit', (e) => {
-        e.preventDefault()
-    })
-
-
-
-
     /* Agregar las tareas al arreglo de las tareas después guarda las tareas en el LocalStorage y en renderiza */
-
-    document.addEventListener('keypress',(e)=> {
-        e.preventDefault
-        if (e.key == 'Enter' && document.activeElement == inputTask) {
-            addTask()
-        }
-
+    form.addEventListener("submit", (e) => {
+        e.preventDefault()
+        addTask()
     })
-
-    btnAddTask.addEventListener('click', addTask)
-
+    
     function addTask() {
         if (inputTask.value) {
             inputTask.classList.remove('input--empty')

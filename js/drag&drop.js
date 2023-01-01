@@ -23,7 +23,7 @@
 
 /* Traer imagenes de una api para poder usarlas de fondo y sea mas dinamico */
 export default function dragDrop() {
-    let auxintentos = 0;
+    
 
     const zoneDrop = document.querySelector('.drop-zone')
     let texturas = document.querySelectorAll('.textura');
@@ -49,7 +49,7 @@ export default function dragDrop() {
     function handlerBg() {
         // si tiene internet que haga las peticiones
         if (navigator.onLine) {
-            auxintentos = 10;
+            
             texturas.forEach(async (textura) => {
 
                 let url = await getImg()
@@ -84,9 +84,9 @@ export default function dragDrop() {
             e.preventDefault()
         })
 
-        /* pone el mismo fondo de la caja que fue solada encima del contendor  */
+        /* pone el mismo fondo de la caja que fue solatda encima del contendor  */
         zoneDrop.addEventListener('drop', (e) => {
-            auxintentos = 0
+           
             if (navigator.onLine) {
                 let url = e.dataTransfer.getData('url')
                 zoneDrop.style = `background-image:url(${url}); outline: 5px solid #eee;`
@@ -122,10 +122,11 @@ export default function dragDrop() {
 
 
     /* Que solo llame a la función cuando el ususario este en la sección */
+    let firstIntersecting = false
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            if (entry.isIntersecting && auxintentos <= 1) {
-                auxintentos++
+            if (entry.isIntersecting && !firstIntersecting) {
+                firstIntersecting = true
                 handlerBg()
             }
         })

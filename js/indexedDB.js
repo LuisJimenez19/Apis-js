@@ -27,7 +27,11 @@ if (document.getElementById("theme-toggle-dark-icon")) {
     let themeToggleLightIcon = document.getElementById("theme-toggle-light-icon");
 
     // Change the icons inside the button based on previous settings
-    if (localStorage.getItem("color-theme") === "dark" || (!("color-theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+    if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
         themeToggleLightIcon.classList.remove("hidden");
     } else {
         themeToggleDarkIcon.classList.remove("hidden");
@@ -63,30 +67,29 @@ if (document.getElementById("theme-toggle-dark-icon")) {
     });
 }
 
-
 export default function indexedDB() {
     /* Instanciamos el objeto */
     const indexedDB = window.indexedDB;
 
-    const tBody = document.querySelector('.tbody')
-    const modalForm = document.getElementById('modal-form')
+    const tBody = document.querySelector(".tbody");
+    const modalForm = document.getElementById("modal-form");
 
-    const table = document.getElementById('table')
+    const table = document.getElementById("table");
 
-    const putBtn = document.getElementById('put-user')
-    const deleteBtn = document.getElementById('delete-user');
+    const putBtn = document.getElementById("put-user");
+    const deleteBtn = document.getElementById("delete-user");
 
-    const UrlPhotoDefault = 'https://pm1.narvii.com/6471/30c93dd5e859d344d0a743dcf2a94aa5d8618b31_hq.jpg'
+    const UrlPhotoDefault =
+        "https://pm1.narvii.com/6471/30c93dd5e859d344d0a743dcf2a94aa5d8618b31_hq.jpg";
 
     if (indexedDB) {
         /* Petición para abrir la base de datos  */
         const request = indexedDB.open("colpatria", 1);
 
         /* evento que registra que todo salio bien, si todo sale bien llama a la funcion MAIN que contiene toda la interactividad con el cliente, 
-        en esta parte estan las conecciones a la BD en algunas funciones se usa callBacks y en otras se devuele el objeto request, tenga entendido que esto es una practica */
+            en esta parte estan las conecciones a la BD en algunas funciones se usa callBacks y en otras se devuele el objeto request, tenga entendido que esto es una practica */
         request.addEventListener("success", (e) => {
             main();
-             
         });
 
         /* Evento que crea la base de datos, unico lugar donde se puede alterar la estructura de la db */
@@ -96,7 +99,8 @@ export default function indexedDB() {
             /* crea un almacen de objetos */
             dataBase.createObjectStore("users", {
                 // autoIncrement: true,
-                keyPath: "DNI" /* en el 1er parametro el nombre, en 2do las configuraciones, autoIncrement, ketPath */,
+                keyPath:
+                    "DNI" /* en el 1er parametro el nombre, en 2do las configuraciones, autoIncrement, ketPath */,
             });
         });
 
@@ -106,12 +110,15 @@ export default function indexedDB() {
         });
 
         /* función que abre una transacción (nombre del almacen, el modo en el que se abre) 
-        esta función va a ser llamada siempre que se quiera hacer una transacción, osea es llamada por las demas funciones*/
+            esta función va a ser llamada siempre que se quiera hacer una transacción, osea es llamada por las demas funciones*/
         function openTransaction(store, mode) {
             const dataBase = request.result;
-            const IDBtransaction = dataBase.transaction(store, mode); /* Se abre la transacción */
+            const IDBtransaction = dataBase.transaction(
+                store,
+                mode
+            ); /* Se abre la transacción */
             const objectStore = IDBtransaction.objectStore(store);
-            
+
             return objectStore;
         }
 
@@ -121,22 +128,23 @@ export default function indexedDB() {
 
             const request = IDBoperation.add(user);
             request.onsuccess = function () {
-                fnRender(user, true)
-                setNotification("Se ha actualizado la DB correectamente.")
-            }
+                fnRender(user, true);
+                setNotification("Se ha actualizado la DB correectamente.");
+            };
 
             request.onerror = function (e) {
-                console.log(e.target.error.message)
-                alert('Ya existe un usuario con ese DNI, verifique y vuelva a intentarlo')
-            }
+                console.log(e.target.error.message);
+                alert(
+                    "Ya existe un usuario con ese DNI, verifique y vuelva a intentarlo"
+                );
+            };
         }
 
         /* Función que trae un objeto con el key asignado */
         function getUser(key) {
             const IDBoperation = openTransaction("users", "readonly");
             const request = IDBoperation.get(key);
-            return request
-
+            return request;
         }
 
         /* Función que trae a los usuarios que esten en la base datos */
@@ -145,15 +153,14 @@ export default function indexedDB() {
             const IDBoperation = openTransaction("users", "readonly");
             const cursor = IDBoperation.openCursor();
 
-            const arrUsers = []
+            const arrUsers = [];
 
             cursor.onsuccess = () => {
                 if (cursor.result) {
                     arrUsers.push(cursor.result.value);
                     cursor.result.continue();
-
                 } else {
-                    fnRender(arrUsers)
+                    fnRender(arrUsers);
                 }
             };
         }
@@ -167,7 +174,10 @@ export default function indexedDB() {
                     alert("No existe usuario con esa clave");
                 } else {
                     IDBoperation.put(value);
-                    setNotification(`usuario ${value.name} modificado correctamente`, value.photo);
+                    setNotification(
+                        `usuario ${value.name} modificado correctamente`,
+                        value.photo
+                    );
                 }
             });
         }
@@ -183,27 +193,25 @@ export default function indexedDB() {
                     alert("No existe usuario con esa clave");
                 } else {
                     IDBoperation.delete(key);
-                    setNotification(`Usuario con DNI: ${key} Eliminado correctamente`)
+                    setNotification(`Usuario con DNI: ${key} Eliminado correctamente`);
                 }
             });
         }
         function clearDB() {
-            const IDBoperation = openTransaction("users", "readwrite")
-            const resquest = IDBoperation.clear()
-            alert("Datos borrados exitosamente")
-
+            const IDBoperation = openTransaction("users", "readwrite");
+            const resquest = IDBoperation.clear();
+            alert("Datos borrados exitosamente");
         }
 
         /* Función que conecta el front con el "back" */
 
         function main() {
-            let photo = UrlPhotoDefault
-
+            let photo = UrlPhotoDefault;
 
             if (tBody.children.length === 0) {
-                table.classList.add('hidden')
+                table.classList.add("hidden");
             } else {
-                table.classList.remove('hidden')
+                table.classList.remove("hidden");
             }
 
             const verifyData = () => {
@@ -211,74 +219,71 @@ export default function indexedDB() {
                 const cursor = IDBoperation.openCursor();
                 cursor.onsuccess = () => {
                     if (cursor.result) {
-                        if (confirm("Se encontraron datos de colpatria, desea cargarlos?")) {
-                            getUsers(renderUsers)
+                        if (
+                            confirm("Se encontraron datos de colpatria, desea cargarlos?")
+                        ) {
+                            getUsers(renderUsers);
                         }
                     }
                 };
-            }
-            verifyData()
+            };
+            verifyData();
 
-            const form = document.getElementById('form')
+            const form = document.getElementById("form");
 
-            const inputName = document.getElementById('name');
-            const inputDni = document.getElementById('dni');
-            const inputEmail = document.getElementById('email');
-            const inputPass = document.getElementById('pass');
-            const inputPhoto = document.getElementById('file')
+            const inputName = document.getElementById("name");
+            const inputDni = document.getElementById("dni");
+            const inputEmail = document.getElementById("email");
+            const inputPass = document.getElementById("pass");
+            const inputPhoto = document.getElementById("file");
 
             /* Al mostrar el modal los valore de los inputs son seteados y el placeholder da un ejemplo del valor requerido
-            ya que se usa este mismo modal al querer modificar un usuario y en ese proceso los inputs y placeholder cambian de valor */
-            document.addEventListener('click', (e) => {
-                if (e.target.matches('#add-user-modal')) {
-                    modalForm.classList.toggle('hidden')
+                  ya que se usa este mismo modal al querer modificar un usuario y en ese proceso los inputs y placeholder cambian de valor */
+            document.addEventListener("click", (e) => {
+                if (e.target.matches("#add-user-modal")) {
+                    modalForm.classList.toggle("hidden");
 
-                    inputName.value = ""
-                    inputDni.value = ""
-                    inputEmail.value = ""
-                    inputPass.value = ""
+                    inputName.value = "";
+                    inputDni.value = "";
+                    inputEmail.value = "";
+                    inputPass.value = "";
 
-                    document.querySelector(".img-preview").src = UrlPhotoDefault
+                    document.querySelector(".img-preview").src = UrlPhotoDefault;
                     // document.querySelector(".img-preview").src = "../src/1.jpg"
-                    inputName.placeholder = "Introduce tu nombre"
-                    inputDni.placeholder = "introduce tu dni"
-                    inputDni.removeAttribute("disabled")
+                    inputName.placeholder = "Introduce tu nombre";
+                    inputDni.placeholder = "introduce tu dni";
+                    inputDni.removeAttribute("disabled");
 
-                    inputEmail.placeholder = "ejemplo@gmail.com"
-                    document.querySelector('#form-title').textContent = `Agregar usuario`
+                    inputEmail.placeholder = "ejemplo@gmail.com";
+                    document.querySelector("#form-title").textContent = `Agregar usuario`;
 
-                    document.querySelector('#put-user').classList.add('hidden')
-                    document.querySelector('#add-user').classList.remove('hidden')
-
+                    document.querySelector("#put-user").classList.add("hidden");
+                    document.querySelector("#add-user").classList.remove("hidden");
                 }
-                if (e.target.matches('#close')) {
+                if (e.target.matches("#close")) {
                     // modalForm.classList.toggle('hidden')
-                    getUsers(renderUsers)
-                    document.querySelector('#modal-form').classList.toggle('hidden')
+                    getUsers(renderUsers);
+                    document.querySelector("#modal-form").classList.toggle("hidden");
                 }
-                if (e.target.matches('#get-users')) {
-                    getUsers(renderUsers)
+                if (e.target.matches("#get-users")) {
+                    getUsers(renderUsers);
                 }
 
                 /* Cuando le de click en ver mas hace una petición a la BD, devuelve peticion y espero a que se dispare el evento, otra forma seria con un callback */
 
-                if (e.target.matches('.look-more')) {
-                    let request = getUser(e.target.id)
-                    request.addEventListener('success', () => {
-                        renderModalPut(request.result)
-                    })
+                if (e.target.matches(".look-more")) {
+                    let request = getUser(e.target.id);
+                    request.addEventListener("success", () => {
+                        renderModalPut(request.result);
+                    });
                 }
-
-
-            })
+            });
 
             /* renderiza los usuarios, si es solo un usuario entonces se indica en la llamada a la función otra forma seria separar las funciones individualmente */
             function renderUsers(arr, one = false) {
-
                 if (one === true) {
                     // tBody.innerHTML = ""
-                    let tr =
-                        `<tr class="bg-zinc-300 border-b dark:bg-gray-800
+                    let tr = `<tr class="bg-zinc-300 border-b dark:bg-gray-800
                                 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600
                                 cursor-pointer">
                         <th scope="row" class="py-4 px-6 font-medium text-gray-900
@@ -302,17 +307,14 @@ export default function indexedDB() {
                   font-medium rounded-lg text-sm px-5
                   py-2.5 text-center cursor-pointer look-more" id="${arr.DNI}">Ver mas</a>
                         </td>
-                    </tr>`
+                    </tr>`;
 
-                    tBody.innerHTML += tr
-                    modalForm.classList.add('hidden')
-                }
-                else {
-                    tBody.innerHTML = ""
-                    arr.map((obj => {
-
-                        let tr =
-                            `<tr class="bg-zinc-300 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
+                    tBody.innerHTML += tr;
+                    modalForm.classList.add("hidden");
+                } else {
+                    tBody.innerHTML = "";
+                    arr.map((obj) => {
+                        let tr = `<tr class="bg-zinc-300 border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 cursor-pointer">
                                <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white flex items-center gap-5">
                                     <img width="50" height="50" class="p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500 th__img" src="${obj.photo}" alt="photo">
                                     <p>${obj.name}</p>
@@ -332,91 +334,80 @@ export default function indexedDB() {
                                         font-medium rounded-lg text-sm px-5
                                         py-2.5 text-center cursor-pointer look-more" id="${obj.DNI}">Ver mas</button>
                                 </td>
-                            </tr>`
+                            </tr>`;
 
-                        tBody.innerHTML += tr
-                    }))
-
+                        tBody.innerHTML += tr;
+                    });
                 }
                 if (tBody.children.length === 0) {
-                    table.classList.add('hidden')
+                    table.classList.add("hidden");
                 } else {
-                    table.classList.remove('hidden')
+                    table.classList.remove("hidden");
                 }
-                return arr
+                return arr;
             }
 
-
-
-
             /* Solo se permiten 8 caracteres, o numeros mejor dicho en este caso solo aplico ese filtro */
-            inputDni.addEventListener('keypress', (e => {
-                let value = e.target.value
-                value = value.toString().slice(0, 7)
-                e.target.value = value
-            }))
-
+            inputDni.addEventListener("keypress", (e) => {
+                let value = e.target.value;
+                value = value.toString().slice(0, 7);
+                e.target.value = value;
+            });
 
             /* Funcion que guarda la imagen en la DB si no deja por defecto */
-            const reader = new FileReader()
-            inputPhoto.addEventListener('change', (e) => {
+            const reader = new FileReader();
+            inputPhoto.addEventListener("change", (e) => {
                 reader.readAsDataURL(inputPhoto.files[0]);
                 reader.addEventListener("load", (event) => {
                     let fileState = event.currentTarget;
                     if (fileState.readyState == 2) {
                         // photo = URL.createObjectURL(fileState.result)
-                        photo = fileState.result
-                        if (!photo.includes('image')) {
-                            alert('Por favor selecciona una imagen')
-                            photo = UrlPhotoDefault
+                        photo = fileState.result;
+                        if (!photo.includes("image")) {
+                            alert("Por favor selecciona una imagen");
+                            photo = UrlPhotoDefault;
                             // photo = "../src/1.jpg"
                         } else {
-                            document.querySelector(".img-preview").src = photo
+                            document.querySelector(".img-preview").src = photo;
                         }
                     }
                 });
-            })
-
+            });
 
             /* Añade el usuario a la DB */
-            form.addEventListener('submit', (e => {
-                e.preventDefault()
-                let name = inputName.value
-                let DNI = inputDni.value
-                let email = inputEmail.value
-                let pass = inputPass.value
-                photo = document.querySelector(".img-preview").src
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+                let name = inputName.value;
+                let DNI = inputDni.value;
+                let email = inputEmail.value;
+                let pass = inputPass.value;
+                photo = document.querySelector(".img-preview").src;
                 if (DNI.length != 8) {
-                    alert("Ingrese un DNI valido")
-                }
-                else {
-
+                    alert("Ingrese un DNI valido");
+                } else {
                     const user = {
                         name,
                         DNI,
                         email,
                         pass,
-                        photo
-                    }
+                        photo,
+                    };
                     addUser(user, renderUsers);
-                    inputName.value = ""
-                    inputDni.value = ""
-                    inputEmail.value = ""
-                    inputPass.value = ""
-
+                    inputName.value = "";
+                    inputDni.value = "";
+                    inputEmail.value = "";
+                    inputPass.value = "";
                 }
-
-            }))
+            });
 
             function updateUser(user) {
-                let name = inputName.value
-                let DNI = user.DNI
-                let email = inputEmail.value
-                let pass = inputPass.value
-                
+                let name = inputName.value;
+                let DNI = user.DNI;
+                let email = inputEmail.value;
+                let pass = inputPass.value;
+
                 // let photoPut = user.photo != photo ? photo : user.photo
-                photo = document.querySelector(".img-preview").src
-                
+                photo = document.querySelector(".img-preview").src;
 
                 const userPut = {
                     DNI: user.DNI,
@@ -424,75 +415,72 @@ export default function indexedDB() {
                     DNI,
                     email,
                     pass,
-                    photo
-                }
-                putUser(user.DNI, userPut)
-                document.querySelector('#modal-form').classList.toggle('hidden')
-                getUsers(renderUsers)
+                    photo,
+                };
+                putUser(user.DNI, userPut);
+                document.querySelector("#modal-form").classList.toggle("hidden");
+                getUsers(renderUsers);
             }
 
             /* Renderiza el formulario para actualizar o eliminar el user */
             function renderModalPut(user) {
-                
-                inputName.value = user.name
-                inputDni.value = user.DNI
-                inputEmail.value = user.email
-                inputPass.value = user.pass
-                inputDni.setAttribute("disabled", true)
-                document.querySelector(".img-preview").src = user.photo
+                inputName.value = user.name;
+                inputDni.value = user.DNI;
+                inputEmail.value = user.email;
+                inputPass.value = user.pass;
+                inputDni.setAttribute("disabled", true);
+                document.querySelector(".img-preview").src = user.photo;
 
-                modalForm.classList.toggle('hidden')
-                document.querySelector('#put-user').classList.remove('hidden')
-                document.querySelector('#add-user').classList.add('hidden')
+                modalForm.classList.toggle("hidden");
+                document.querySelector("#put-user").classList.remove("hidden");
+                document.querySelector("#add-user").classList.add("hidden");
 
-                document.querySelector('#form-title').textContent = `Modificar usuario ${user.name}`
+                document.querySelector(
+                    "#form-title"
+                ).textContent = `Modificar usuario ${user.name}`;
 
                 /* Uso este metodo y no un escucha porque al parecer se dispara muchas veces con el addEventListener, en cambio asi no, la otra solución seria hacerlo fuera de esta función. */
                 putBtn.onclick = () => {
-                    updateUser(user)
-                }
-                    
+                    updateUser(user);
+                };
 
                 deleteBtn.onclick = () => {
                     if (confirm(`Seguro desea eliminar al usuario ${user.name}`)) {
-                        deleteUser(user.DNI)
+                        deleteUser(user.DNI);
                     }
-                    document.querySelector('#modal-form').classList.toggle('hidden')
-                    getUsers(renderUsers)
-                }
+                    document.querySelector("#modal-form").classList.toggle("hidden");
+                    getUsers(renderUsers);
+                };
             }
 
             /* Combinación de teclas que limpia por completo la base de datos */
-            document.addEventListener('keypress', (e) => {
+            document.addEventListener("keypress", (e) => {
                 if (e.key === "B" && e.shiftKey) {
-
                     if (confirm("Esta seguro que desea borrar todos los datos?, no podra recuperarlos")) {
                         if (confirm("Pero de verdad esta seguro que lo desea hacer?")) {
                             if (confirm("ultima palabra?")) {
-                                alert("pues no se puede xd")
+                                alert("pues no se puede xd");
                             } else {
-                                clearDB()
-                                getUsers(renderUsers)
+                                clearDB();
+                                getUsers(renderUsers);
                             }
                         }
                     }
                 }
-            })
+            });
         }
         /* Función para hacer notificaciones */
         function setNotification(msg, icon = "../src/1.jpg") {
             Notification.requestPermission(() => {
                 if (Notification.permission == "granted") {
-                    new Notification("Colpatria",
-                        {
-                            body: msg,
-                            icon
-                    })
+                    navigator.vibrate(500)
+                    new Notification("Colpatria", {
+                        body: msg,
+                        icon,
+                    });
                 }
-            })
+            });
         }
-
     }
-
 }
-indexedDB()
+indexedDB();
