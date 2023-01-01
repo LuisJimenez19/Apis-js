@@ -258,20 +258,23 @@ export default function indexedDB() {
                     document.querySelector("#form-title").textContent = `Agregar usuario`;
 
                     document.querySelector("#put-user").classList.add("hidden");
+                    document.querySelector("#put-user").setAttribute("disabled", true);
+
                     document.querySelector("#add-user").classList.remove("hidden");
+                    document.querySelector("#add-user").removeAttribute("disabled");
                 }
-                if (e.target.matches("#close")) {
+                else if (e.target.matches("#close")) {
                     // modalForm.classList.toggle('hidden')
                     getUsers(renderUsers);
                     document.querySelector("#modal-form").classList.toggle("hidden");
                 }
-                if (e.target.matches("#get-users")) {
+                else if (e.target.matches("#get-users")) {
                     getUsers(renderUsers);
                 }
 
                 /* Cuando le de click en ver mas hace una petición a la BD, devuelve peticion y espero a que se dispare el evento, otra forma seria con un callback */
 
-                if (e.target.matches(".look-more")) {
+                else if (e.target.matches(".look-more")) {
                     let request = getUser(e.target.id);
                     request.addEventListener("success", () => {
                         renderModalPut(request.result);
@@ -392,15 +395,25 @@ export default function indexedDB() {
                         pass,
                         photo,
                     };
-                    addUser(user, renderUsers);
-                    inputName.value = "";
-                    inputDni.value = "";
-                    inputEmail.value = "";
-                    inputPass.value = "";
+                    // addUser(user, renderUsers);
+                    if (document.querySelector("#add-user").getAttribute("disabled")) {
+                        console.log("actualizando")
+                        updateUser(user);
+
+                    } else if (document.querySelector("#put-user").getAttribute("disabled")) {
+                        console.log("agregando")
+                        addUser(user, renderUsers);
+                        inputName.value = "";
+                        inputDni.value = "";
+                        inputEmail.value = "";
+                        inputPass.value = "";
+                        
+                    }
                 }
             });
 
             function updateUser(user) {
+                modalForm.classList.add("hidden");
                 let name = inputName.value;
                 let DNI = user.DNI;
                 let email = inputEmail.value;
@@ -417,8 +430,8 @@ export default function indexedDB() {
                     pass,
                     photo,
                 };
+                
                 putUser(user.DNI, userPut);
-                document.querySelector("#modal-form").classList.toggle("hidden");
                 getUsers(renderUsers);
             }
 
@@ -432,12 +445,19 @@ export default function indexedDB() {
                 document.querySelector(".img-preview").src = user.photo;
 
                 modalForm.classList.toggle("hidden");
+
+
+                document.querySelector("#put-user").removeAttribute("disabled");
                 document.querySelector("#put-user").classList.remove("hidden");
+                
+                document.querySelector("#add-user").setAttribute("disabled", true);
                 document.querySelector("#add-user").classList.add("hidden");
 
-                document.querySelector(
-                    "#form-title"
-                ).textContent = `Modificar usuario ${user.name}`;
+
+
+                document.querySelector("#form-title").textContent = `Modificar usuario ${user.name}`;
+
+                
 
                 /* Uso este metodo y no un escucha porque al parecer se dispara muchas veces con el addEventListener, en cambio asi no, la otra solución seria hacerlo fuera de esta función. */
                 putBtn.onclick = () => {

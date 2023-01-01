@@ -6,7 +6,36 @@
 	box-sizing: border-box;
 	word-wrap: break-word;
 }
+::-webkit-scrollbar {
+	width: 8px;
+	background-color: #F5F5F5;
+}
 
+::-webkit-scrollbar-thumb {
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background: #4285F4;
+}
+
+::-moz-scrollbar {
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+::-moz-scrollbar-thumb {
+	border-radius: 10px;
+	background: #4285F4;
+}
+
+::-ms-scrollbar {
+	width: 8px;
+	background-color: #F5F5F5;
+}
+
+::-ms-scrollbar-thumb {
+	border-radius: 10px;
+	background: #4285F4;
+}
 ul {
 	list-style: none;
 }
@@ -124,8 +153,13 @@ body {
 	transition: all 0.3s ease-in-out;
 
 	z-index: 700;
+	overflow-y: unset;
 	/* se posiciona delante de la wave pero antes del icon hamburguesa */
 }
+.nav.nav--scroll{
+	overflow-y: auto;
+}
+
 
 .nav--active {
 	animation: showAside 0.3s ease-in-out both;

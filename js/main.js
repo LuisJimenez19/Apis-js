@@ -38,6 +38,14 @@ btnHamburguer.addEventListener("click", (e) => {
     btnHamburguer.classList.toggle("is-active");
     aside.classList.toggle("d-none");
     nav.classList.toggle("nav--active");
+   
+    /* Por si el nav tiene mas contenido del que entra en la pantalla le da una clase que habilita el scroll */
+    if (nav.clientHeight >= innerHeight) {
+        nav.classList.add("nav--scroll")
+    } else {
+        nav.classList.remove("nav--scroll")
+    }
+
 });
 
 /* Cuando se le da click a un link del nav se esconde el nav, da la animación al menu, solo en menos de 768px */
@@ -61,12 +69,19 @@ navLinks.forEach((link) => {
 });
 
 aside.addEventListener("click", (e) => {
+    
     if (e.target.className == "aside-bg") {
         btnHamburguer.classList.toggle("is-active");
         aside.classList.toggle("d-none");
         nav.classList.toggle("nav--active");
     }
 });
+
+if (nav.clientHeight >= innerHeight) {
+    nav.classList.add("nav--scroll")
+}
+
+
 /* Holla */
 
 /* <----------------------------------------------> */
