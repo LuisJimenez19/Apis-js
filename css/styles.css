@@ -6,6 +6,7 @@
 	box-sizing: border-box;
 	word-wrap: break-word;
 }
+
 ::-webkit-scrollbar {
 	width: 8px;
 	background-color: #F5F5F5;
@@ -36,6 +37,7 @@
 	border-radius: 10px;
 	background: #4285F4;
 }
+
 ul {
 	list-style: none;
 }
@@ -60,11 +62,12 @@ input {
 	border: none;
 }
 
-p{
+p {
 	color: #ffffff;
 	font-size: 1.2em;
 }
-button{
+
+button {
 	outline: none;
 	border: none;
 }
@@ -115,8 +118,8 @@ body {
 	line-height: 2;
 }
 
-.hero{
-	color:#333;
+.hero {
+	color: #333;
 }
 
 .wave-header {
@@ -156,7 +159,8 @@ body {
 	overflow-y: unset;
 	/* se posiciona delante de la wave pero antes del icon hamburguesa */
 }
-.nav.nav--scroll{
+
+.nav.nav--scroll {
 	overflow-y: auto;
 }
 
@@ -178,13 +182,11 @@ body {
 .container-principal {
 	display: flex;
 	gap: 30px;
-	background: linear-gradient(
-		180deg,
-		#253595,
-		#2f346c,
-		rgb(16, 138, 138),
-		#0228ff
-	);
+	background: linear-gradient(180deg,
+			#253595,
+			#2f346c,
+			rgb(16, 138, 138),
+			#0228ff);
 }
 
 .nav-bar {
@@ -343,7 +345,10 @@ body {
 /* <--intectividad --> */
 .d-none {
 	display: none;
+	
 }
+	
+
 
 /* <-------------------DESKTOP 768px--------------------> */
 @media (min-width: 769px) {
@@ -494,7 +499,7 @@ body {
 	font-weight: bold;
 }
 
-.input-task:focus + .inputFocus {
+.input-task:focus+.inputFocus {
 	transform: scale(1.1);
 }
 
@@ -893,22 +898,26 @@ label[for="file"]:hover {
 	0% {
 		background-color: #dd02ff;
 	}
+
 	25% {
 		background-color: #c731ca;
 	}
+
 	50% {
 		background-color: #055f37;
 	}
+
 	75% {
 		background-color: #2a8a12;
 	}
+
 	100% {
 		background-color: greenyellow;
 	}
 }
 
 /* Si es un texto */
-.result-file > p {
+.result-file>p {
 	margin-top: 20px;
 	color: #fff;
 	word-break: keep-all;
@@ -919,7 +928,7 @@ label[for="file"]:hover {
 }
 
 /* Si es una imagen */
-.result-file > img {
+.result-file>img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
@@ -937,15 +946,17 @@ video {
 
 
 /* IndexedDB */
-.indexedDB{
+.indexedDB {
 	position: fixed !important;
 	bottom: 10px;
-	right: 10px;		
+	right: 10px;
 }
-.indexedDB-section{
+
+.indexedDB-section {
 	position: relative;
 }
-.indexedDB-a{
+
+.indexedDB-a {
 	padding: 10px 20px;
 	background-color: #48e;
 	border-radius: 8px;
@@ -954,7 +965,7 @@ video {
 	/* position: relative; */
 }
 
-.indexedDB-a::before{
+.indexedDB-a::before {
 	content: "Ir a COLPATRIA";
 	position: absolute;
 	bottom: -40px;
@@ -967,27 +978,69 @@ video {
 	pointer-events: none;
 	clip-path: polygon(22% 0, 39% 28%, 100% 29%, 100% 100%, 0 100%, 0 28%, 13% 28%);
 	border-radius: 10px;
-	padding: 20px 20px 10px ;
+	padding: 20px 20px 10px;
 	background-color: rgba(0, 0, 0, 0.767);
 }
 
-.indexedDB-a:hover{
+.indexedDB-a:hover {
 	transform: scale(1.05);
 	box-shadow: 0 0 20px rgb(63, 62, 62);
 }
 
-.indexedDB-a:hover::before{
+.indexedDB-a:hover::before {
 	opacity: 1;
-	
+
 }
 
-.😍{
+.😍 {
 	max-width: 500px;
 	display: block;
 	margin: auto;
 }
+
 /* ---------------matchMedia-section------------------- */
-.matchMedia-section{
+.matchMedia-section {
 	display: flex;
 	flex-wrap: wrap;
+}
+
+
+
+
+/* <-----------canvas------------> */
+
+#obj-canvas {
+	margin-top: 30px;
+	border: 1px solid #333;
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, .1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	box-shadow: 0 0 20px rgb(21, 21, 21);
+}
+
+.canvas__title{
+	text-align: center;
+	margin-bottom:20px ;
+}
+
+.canvas__options{
+	display: flex;
+	justify-content: center;
+	margin: auto;
+	width: 80%;
+	gap: 20px;
+	/* border: 1px solid #ccc; */
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgb(21, 21, 21);
+	background-color: #3c5aff;
+	padding: 10px;
+}
+
+#color-line{
+	flex-grow: 1;
+}
+
+#width-line{
+	flex-grow: 4;
 }

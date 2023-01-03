@@ -38,7 +38,7 @@ btnHamburguer.addEventListener("click", (e) => {
     btnHamburguer.classList.toggle("is-active");
     aside.classList.toggle("d-none");
     nav.classList.toggle("nav--active");
-   
+
     /* Por si el nav tiene mas contenido del que entra en la pantalla le da una clase que habilita el scroll */
     if (nav.clientHeight >= innerHeight) {
         nav.classList.add("nav--scroll")
@@ -69,7 +69,7 @@ navLinks.forEach((link) => {
 });
 
 aside.addEventListener("click", (e) => {
-    
+
     if (e.target.className == "aside-bg") {
         btnHamburguer.classList.toggle("is-active");
         aside.classList.toggle("d-none");
@@ -226,10 +226,10 @@ const operacionQueSeDemora = (num) => {
     return res
 
 }
-console.log(operacionQueSeDemora(100000))
-console.log(operacionQueSeDemora(20000))
-console.log(operacionQueSeDemora(110000))
-console.log(operacionQueSeDemora(50000))
+// console.log(operacionQueSeDemora(100000))
+// console.log(operacionQueSeDemora(20000))
+// console.log(operacionQueSeDemora(110000))
+// console.log(operacionQueSeDemora(50000))
 
 
 
@@ -296,3 +296,238 @@ caches.open("archivos-estaticos").then(cache => {
 
 })
 
+
+/* Voy a instalar un service worker para que guarde los estilos de la pagina aún asi no tenga conexión a internet */
+
+navigator.serviceWorker.register("/js/sw.js")
+
+
+/* Aquí me dio un ataque y refactorice unos scripts que tenia en Python, tengo pensado hacer un rompe cabeza pero lo voy a hacer con React y talwind c: */
+
+let matrix = []
+let aux = 1
+for (let i = 0; i < 3; i++) {
+    matrix.push([])
+    for (let j = 0; j < 3; j++) {
+
+        let value = aux != 9 ? aux.toString() : ''
+        matrix[i].push(value)
+        aux++
+    }
+}
+// console.log(matrix)
+
+let arr = ["1", "2", "3", "4", "5", "6", "7", "8", ""]
+let shufleArr = arr.sort(() => Math.random() - 0.5)
+let shufleMatriz = []
+let count = 0
+for (let i = 0; i < 3; i++) {
+    shufleMatriz.push([])
+    for (let j = 0; j < 3; j++) {
+        shufleMatriz[i].push(shufleArr[count])
+        count++
+    }
+}
+// console.log(shufleMatriz)
+
+/* <-----------------------Cookies-------------------> */
+/* as cookies son archivos de texto que se guardan en el navegador de un usuario cuando este visita una página web. Estos archivos permiten que la página web recuerde información sobre la navegación del usuario en ella, como por ejemplo, su idioma preferido, información de inicio de sesión y otra configuración.
+
+Por ejemplo, imagina que entras a una página de comercio en línea y añades un par de artículos a tu carrito de compras. Luego cierras la página y vuelves a entrar al sitio unos días más tarde. Gracias a las cookies, el sitio se acordará de tu carrito de compras y te mostrará los artículos que añadiste la última vez que estuviste en el sitio.
+
+Otro ejemplo de cómo se pueden utilizar las cookies es para personalizar la publicidad que se muestra a un usuario. Si un usuario visita una página sobre zapatos y luego otra sobre ropa, la página de ropa podría utilizar una cookie para recordar el interés del usuario en los zapatos y mostrarle anuncios de zapatos mientras navega por el sitio.
+
+Es importante mencionar que las cookies no son virus ni malware y no dañan de ninguna manera el equipo de un usuario. Sin embargo, algunas personas eligen deshabilitar las cookies en sus navegadores para mayor privacidad o para evitar que se acumulen demasiadas en su equipo. */
+//          obligatorio; opcionales
+/* expires indica cuando va a vencer la cookie recibe la fecha en formato UTC si no se le indica expira en la sesión */
+/* max-age cuantos segundos va a vivir la cookie */
+// COOKIES: clave:valor;atr;atr;atr;atr
+
+// document.cookie = "user=Luis"
+
+
+createCookie("user=Luis Angel", 2)
+createCookie("idioma=es", 1)
+createCookie("typeUser=comun", 3)
+createCookie("location=argentina", 1)
+
+/* funcion que hace la conversión de días a la fecha limite expresada en UTC que es el valor que requiere la cookie */
+function dateUtc(days) {
+    let date = new Date();
+    date.setTime(date.getTime() + days * 1000 * 60 * 60 * 24)
+    return date.toUTCString()
+}
+
+/* función que crea las cookies */
+function createCookie(name, exp) {
+    let days = dateUtc(exp)
+    document.cookie = `${name}; expires=${days}`
+    /* new Notification("Cookie", {
+        body: `Se ha añadido una cookie ${name}`
+    }) */
+}
+/* función que obtiene cookie */
+function getCookie(cookieName) {
+    let cookies = document.cookie;
+    let cookieValue = undefined
+    /* devuelve un string, entonces lo paso a un array para iterarlo */
+    cookies = cookies.split(";")
+    cookies.forEach(cookie => {
+        /* Quita los espacios y pregunta si empieza con el nombre indicado */
+        if (cookie.trim().startsWith(cookieName)) {
+            /* lo separa en un array [nombre, valor] */
+            cookieValue = cookie.split("=")[1]
+        }
+    })
+
+    if (cookieValue === undefined) {
+        return "No hay cookie con ese nombre"
+    }
+    return cookieValue
+
+
+}
+console.log(getCookie("user"))
+
+
+/* Para modificar una cookie se hace reescribiondola  */
+setTimeout(() => {
+    createCookie("idioma=spanish;", 1)
+}, 3000)
+
+/* y para borrarla se reescribe el atributo max-age:0 */
+setTimeout(() => {
+    createCookie("location=argentina;max-age=0", 1)
+}, 3000)
+
+/* Por politicas de pivacidad y temas legales se debe preguntar si se pueden usar cookies  */
+
+
+/* <-----------------------------objeto Screnn */
+/* Nos permite acceder a las propiedades de la pantalla y de la pantalla disponible */
+/* Valores totales */
+let anchoTotal = screen.width
+let alturaTotal = screen.height
+/* valores disponibles */
+let anchoDisponible = screen.availWidth
+let alturaDisponible = screen.availHeight
+
+let resolucion = screen.pixelDepth /* Resolución de color de la pantalla */
+let profundidad = screen.colorDepth /* profundidad de bits de la paleta de colores */
+
+/* Esto devuelve el tamaño de la ventana ose el vieport */
+console.log(window.innerHeight)
+console.log(window.innerWidth)
+
+console.log({ anchoTotal })
+console.log({ alturaTotal })
+
+console.log({ anchoDisponible })
+console.log({ alturaDisponible })
+
+console.log({ resolucion })
+console.log({ profundidad })
+
+/* <-----------------------------Canvas----------------------> */
+/* el objeto canvas es utilizado para dibujar, hacer graficos, juegos y mucho mas en este ejemplo voy hacer un web paint (copiado) */
+const canvas = document.getElementById("obj-canvas")
+
+// /* 1) se crea un context */
+const context = canvas.getContext("2d")
+// /* Los metodos se aplican al context */
+
+// context.strokeStyle = "#f49"
+// context.lineWidth = "3"
+// //          left, top, ancho, altura
+// context.strokeRect(150, 0, 200, 300)
+
+// /* Un cuadrilatero relleno */
+// context.fillStyle = "#f49"
+// context.fillRect(160, 10, 200, 300)
+
+// /* lineas, primero se crean los puntos y despues se unen */
+// context.lineTo(100,425)
+// context.lineTo(100,480)
+// context.lineTo(200,420)
+// context.lineTo(300,490)
+// /* Después se dibuja */
+// context.stroke()
+// /* se cierra  */
+// context.closePath()
+
+// /* Se crea una nueva */
+// context.beginPath()
+// context.lineTo(50, 325)
+// context.lineTo(60, 380)
+// context.lineTo(70, 350)
+// context.stroke()
+
+
+/* Cuando sea en dispositivos con pantalla pequeña */
+/* const mqr = matchMedia("(max-width: 768px)")
+if (mqr.matches) {
+    canvas.width = 300
+    canvas.height = 500
+} else {
+    canvas.height = 500
+    canvas.width = 500
+}
+mqr.addEventListener("change", (e) => {
+    if (mqr.matches) {
+        canvas.height = 500
+        canvas.width = 300
+    } else {
+        canvas.height = 500
+        canvas.width = 500
+    }
+}) */
+/* <----------------web painr---------------> */
+
+/* propiedades de ubicación utilizando la distancia entre los bordes a los puntos */
+const dif = canvas.getBoundingClientRect();
+
+
+let painting, color, lineWidth, difX, difY;
+
+/* cuando este por encima del canvas */
+canvas.addEventListener("mousedown", (e) => {
+    /* Se resta las distancias que hay entre el mouse segun la pantalla con el del canvas */
+    difX = e.clientX - dif.left
+    difY = e.clientY - dif.top
+
+    /* se puede pintar */
+    painting = true
+
+    color = document.getElementById("color-line").value;
+    lineWidth = document.getElementById("width-line").value;
+    // context.beginPath()
+    context.beginPath();
+
+})
+/* cuando se mueve llama a la función que dibuja */
+canvas.addEventListener("mousemove", (e) => {
+    if (painting) {
+        draw(difX, difY, e.clientX - dif.left, e.clientY - dif.top)
+        difX = e.clientX - dif.left
+        difY = e.clientY - dif.top
+
+    }
+})
+
+/* deja de dibujar cuando se sale del canvas */
+
+
+canvas.addEventListener("mouseup", () => {
+    context.closePath()
+    painting = false
+})
+
+function draw(x1, y1, x2, y2) {
+
+    context.strokeStyle = color;
+    context.lineWidth = lineWidth;
+    context.moveTo(x1,y1)
+    context.lineTo(x2, y2);
+    context.stroke();
+    
+}
