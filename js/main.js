@@ -299,7 +299,7 @@ caches.open("archivos-estaticos").then(cache => {
 
 /* Voy a instalar un service worker para que guarde los estilos de la pagina aún asi no tenga conexión a internet */
 
-navigator.serviceWorker.register("/js/sw.js")
+navigator.serviceWorker.register("./sw.js")
 
 
 /* Aquí me dio un ataque y refactorice unos scripts que tenia en Python, tengo pensado hacer un rompe cabeza pero lo voy a hacer con React y talwind c: */
@@ -464,7 +464,7 @@ const context = canvas.getContext("2d")
 
 
 /* Cuando sea en dispositivos con pantalla pequeña */
-/* const mqr = matchMedia("(max-width: 768px)")
+const mqr = matchMedia("(max-width: 768px)")
 if (mqr.matches) {
     canvas.width = 300
     canvas.height = 500
@@ -480,7 +480,7 @@ mqr.addEventListener("change", (e) => {
         canvas.height = 500
         canvas.width = 500
     }
-}) */
+})
 /* <----------------web painr---------------> */
 
 /* propiedades de ubicación utilizando la distancia entre los bordes a los puntos */
@@ -500,7 +500,6 @@ canvas.addEventListener("mousedown", (e) => {
 
     color = document.getElementById("color-line").value;
     lineWidth = document.getElementById("width-line").value;
-    // context.beginPath()
     context.beginPath();
 
 })
